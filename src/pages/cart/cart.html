@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Cart</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!--<div *ngIf="carts?.length == 0">-->
+    <!--<div class="no-transaction" text-center>-->
+      <!--<img src="assets/imgs/no_transaction.png" width="60%">-->
+      <!--<p class="message">Keranjang Belanja Anda Kosong</p>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div *ngIf="carts?.length > 0">-->
+    <ion-card>
+      <ion-list>
+        <ion-item >
+          <ion-thumbnail item-start>
+            <img src="http://belimukena.com/wp-content/uploads/2016/06/Sarung-Koko-BoboiBoy-Merah-300x300.jpg">
+          </ion-thumbnail>
+          <h2>Baju Koko Anak</h2>
+          <div text-left class="price">
+            Rp 20.000,00
+          </div>
+          <div text-right>
+            <div class="button-bar">
+              <button ion-button small outline color="dark"><ion-icon name="remove"></ion-icon></button>
+              <button ion-button clear medium color="dark">2</button>
+              <button ion-button small outline color="dark"><ion-icon name="add"></ion-icon></button>
+              <button ion-button small color="danger" ><ion-icon name="trash"></ion-icon></button>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+  <!--</div>-->
+
+</ion-content>
+
+<ion-footer no-border padding>
+  <button ion-button round block >Next</button>
+</ion-footer>

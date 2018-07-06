@@ -1,3 +1,19 @@
 page-home {
+  ion-slides {
+    width: 100%;
+    height: 130px;
 
+    ion-slide {
+      background-color: #ddd;
+
+      img {
+        width: 100% !important;
+        height: 180px !important;
+      }
+    }
+  }
+
+  ion-icon {
+    font-size: 35px !important; //Preferred size here
+  }
 }
