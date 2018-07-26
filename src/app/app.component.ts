@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import {CategoryPage} from "../pages/category/category";
 
 @Component({
   templateUrl: 'app.html'
@@ -18,7 +19,8 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen ) {
     this.pages = [
-      { title: 'Home', component: TabsPage}
+      { title: 'Home', component: TabsPage},
+      { title: 'Category', component: CategoryPage}
     ];
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -31,6 +33,6 @@ export class MyApp {
 
   open(pages)
   {
-    this.nav.setRoot(pages.component);
+    this.nav.push(pages.component);
   }
 }

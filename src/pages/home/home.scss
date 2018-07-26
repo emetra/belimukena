@@ -13,6 +13,24 @@ page-home {
     }
   }
 
+  ion-col {
+    div {
+      background-color: inherit;
+      border: 1px solid #ddd;
+      padding: 2px;
+      text-align: center;
+    }
+    p {
+      font-size:12px;
+      color: #FFC0CB;
+      font-weight: bold;
+      margin-top: 3px;
+    }
+    img {
+      height: 150px;
+    }
+  }
+
   ion-icon {
     font-size: 35px !important; //Preferred size here
   }

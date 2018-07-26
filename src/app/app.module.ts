@@ -13,6 +13,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {NavbarPage} from "../pages/navbar/navbar";
 import {CartPage} from "../pages/cart/cart";
 import {OtherPage} from "../pages/other/other";
+import {CategoryPage} from "../pages/category/category";
+import {ProductPage} from "../pages/product/product";
+import {ProductdetailPage} from "../pages/productdetail/productdetail";
+import {BestsellerPage} from "../pages/bestseller/bestseller";
 
 @NgModule({
   declarations: [
@@ -23,11 +27,19 @@ import {OtherPage} from "../pages/other/other";
     TabsPage,
     NavbarPage,
     CartPage,
-    OtherPage
+    OtherPage,
+    CategoryPage,
+    ContactPage,
+    ProductPage,
+    ProductdetailPage,
+    BestsellerPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{
+      tabsHideOnSubPages: true
+    }),
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,7 +50,12 @@ import {OtherPage} from "../pages/other/other";
     TabsPage,
     NavbarPage,
     CartPage,
-    OtherPage
+    OtherPage,
+    CategoryPage,
+    ContactPage,
+    ProductPage,
+    ProductdetailPage,
+    BestsellerPage
   ],
   providers: [
     StatusBar,
