@@ -31,48 +31,9 @@
 
     <ion-row>
 
-      <ion-col col-6 (click)="doDetailProducts()">
-        <div><img src="http://belimukena.com/wp-content/uploads/2018/07/Mukena-Susun-Bela-Vistan-Putih-300x300.jpg"> <p>Ranger Putih</p></div>
-      </ion-col>
-
-      <ion-col col-6 (click)="doDetailProducts()">
-        <div><img src="http://belimukena.com/wp-content/uploads/2018/07/Mukena-Dubai-Senada-Toska-Muda-300x300.jpg"> <p>Ranger Biru</p></div>
-      </ion-col>
-
-    </ion-row>
-
-    <ion-row>
-
-      <ion-col col-6 (click)="doProducts()">
-        <div><img src="http://belimukena.com/wp-content/uploads/2018/07/Mukena-Spandek-Brukat-Gold-Renda-Hitam-300x300.jpg"> <p>Ranger Kuning</p></div>
-      </ion-col>
-
-      <ion-col col-6 (click)="doProducts()">
-        <div><img src="http://belimukena.com/wp-content/uploads/2018/07/Mukena-Spandek-Brukat-Fanta-Renda-Hitam-300x300.jpg"> <p>Ranger Merah</p></div>
-      </ion-col>
-
-    </ion-row>
-
-    <ion-row>
-
-      <ion-col col-6 (click)="doDetailProducts()">
-        <div><img src="http://belimukena.com/wp-content/uploads/2018/07/Mukena-Susun-Bela-Vistan-Putih-300x300.jpg"> <p>Hokage</p></div>
-      </ion-col>
-
-      <ion-col col-6 (click)="doDetailProducts()">
-        <div><img src="http://belimukena.com/wp-content/uploads/2018/07/Mukena-Dubai-Senada-Toska-Muda-300x300.jpg"> <p>Ranger Biru</p></div>
-      </ion-col>
-
-    </ion-row>
-
-    <ion-row>
-
-      <ion-col col-6 (click)="doDetailProducts()">
-        <div><img src="http://belimukena.com/wp-content/uploads/2018/07/Mukena-Spandek-Brukat-Gold-Renda-Hitam-300x300.jpg"> <p>Naruto</p></div>
-      </ion-col>
-
-      <ion-col col-6 (click)="doDetailProducts()">
-        <div><img src="http://belimukena.com/wp-content/uploads/2018/07/Mukena-Spandek-Brukat-Fanta-Renda-Hitam-300x300.jpg"> <p>Ranger Merah</p></div>
+      <ion-col col-6 *ngFor="let item of items; let i = index;" (click)="doDetailProducts()">
+        <div *ngIf = "i < 10"><img src="{{item.images}}"> <p>{{item.name}}</p>
+        </div>
       </ion-col>
 
     </ion-row>

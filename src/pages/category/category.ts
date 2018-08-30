@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ProductPage} from "../product/product";
+import { ProductServiceProvider } from '../../providers/product-service/product-service';
 
 /**
  * Generated class for the CategoryPage page.
@@ -16,21 +17,29 @@ import {ProductPage} from "../product/product";
 })
 export class CategoryPage {
 
-  items = [
-    'Mukena',
-    'Baju Koko',
-    'Black Panther'
-  ];
+  items: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public categoryService: ProductServiceProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CategoryPage');
+    this.getCategory();
+  }
+  getCategory() {
+    this.categoryService.getCategories().subscribe(res => {
+      this.items = res.data;
+      console.log(res);
+    })
   }
 
-
-  doProducts() {
-    this.navCtrl.push(ProductPage);
+  doProducts(item) {
+    if(item.child.length > 0)
+    {
+      // this.navCtrl.push(subCategory,{items : item});
+    }
+    else
+    {
+      this.navCtrl.push(ProductPage,{items: item});
+    }
   }
 }

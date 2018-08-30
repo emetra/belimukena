@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ProductdetailPage} from "../productdetail/productdetail";
+import { ProductServiceProvider } from '../../providers/product-service/product-service';
 
 /**
  * Generated class for the BestsellerPage page.
@@ -15,11 +17,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class BestsellerPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public productService: ProductServiceProvider) {
+  }
+  items : any;
+  ionViewDidLoad() {
+    this.getBestSeller();
+    console.log(this.items);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BestsellerPage');
+  getBestSeller(){
+    let data = {
+      slug : "best-seller"
+    };
+    this.productService.getproductsByCategories(data).subscribe(res => {
+      this.items = res.data;
+      console.log(res);
+    })
+  }
+
+  doDetailProducts() {
+    this.navCtrl.push(ProductdetailPage);
   }
 
 }

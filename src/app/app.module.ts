@@ -17,6 +17,13 @@ import {CategoryPage} from "../pages/category/category";
 import {ProductPage} from "../pages/product/product";
 import {ProductdetailPage} from "../pages/productdetail/productdetail";
 import {BestsellerPage} from "../pages/bestseller/bestseller";
+import { ApiServiceProvider } from '../providers/api-service/api-service';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { ProductServiceProvider } from '../providers/product-service/product-service';
+import { OrderstatusPage } from '../pages/orderstatus/orderstatus';
+import { HttpModule } from '@angular/http';
+import { Http } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,14 +39,15 @@ import {BestsellerPage} from "../pages/bestseller/bestseller";
     ContactPage,
     ProductPage,
     ProductdetailPage,
-    BestsellerPage
+    BestsellerPage,
+    OrderstatusPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       tabsHideOnSubPages: true
     }),
-
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,12 +63,16 @@ import {BestsellerPage} from "../pages/bestseller/bestseller";
     ContactPage,
     ProductPage,
     ProductdetailPage,
-    BestsellerPage
+    BestsellerPage,
+    OrderstatusPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiServiceProvider,
+    AuthServiceProvider,
+    ProductServiceProvider
   ]
 })
 export class AppModule {}

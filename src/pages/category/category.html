@@ -13,11 +13,11 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="doProducts()">
-      {{ item }}
+    <button text-wrap ion-item *ngFor="let item of items" (click)="doProducts(item)">
+      {{ item.name }}
     </button>
   </ion-list>
 
