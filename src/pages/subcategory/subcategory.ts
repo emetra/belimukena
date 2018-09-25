@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ProductPage} from "../product/product";
 import { ProductServiceProvider } from '../../providers/product-service/product-service';
-import { SubcategoryPage } from '../subcategory/subcategory';
 
 /**
- * Generated class for the CategoryPage page.
+ * Generated class for the SubcategoryPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,35 +12,23 @@ import { SubcategoryPage } from '../subcategory/subcategory';
 
 @IonicPage()
 @Component({
-  selector: 'page-category',
-  templateUrl: 'category.html',
+  selector: 'page-subcategory',
+  templateUrl: 'subcategory.html',
 })
-export class CategoryPage {
+export class SubcategoryPage {
 
   items: any;
+  item : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public categoryService: ProductServiceProvider) {
   }
 
   ionViewDidLoad() {
-    this.getCategory();
+    this.items = this.navParams.get("items");
   }
-  getCategory() {
-    this.categoryService.getCategories().subscribe(res => {
-      this.items = res.data;
-      console.log(res.data);
 
-    })
-  }
 
   doProducts(item) {
-    if(item.childs.length > 0)
-    {
-      this.navCtrl.push(SubcategoryPage,{items : item.childs});
-    }
-    else
-    {
       this.navCtrl.push(ProductPage,{items: item});
-    }
   }
 }

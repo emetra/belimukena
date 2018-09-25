@@ -22,8 +22,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ProductServiceProvider } from '../providers/product-service/product-service';
 import { OrderstatusPage } from '../pages/orderstatus/orderstatus';
 import { HttpModule } from '@angular/http';
-import { Http } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { SubcategoryPage } from '../pages/subcategory/subcategory';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProductPage,
     ProductdetailPage,
     BestsellerPage,
-    OrderstatusPage
+    OrderstatusPage,
+    SubcategoryPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +64,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProductPage,
     ProductdetailPage,
     BestsellerPage,
-    OrderstatusPage
+    OrderstatusPage,
+    SubcategoryPage
   ],
   providers: [
     StatusBar,
