@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {ProductPage} from "../product/product";
 import { ProductServiceProvider } from '../../providers/product-service/product-service';
 import { SubcategoryPage } from '../subcategory/subcategory';
@@ -10,8 +10,6 @@ import { SubcategoryPage } from '../subcategory/subcategory';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
-@IonicPage()
 @Component({
   selector: 'page-category',
   templateUrl: 'category.html',

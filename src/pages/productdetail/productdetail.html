@@ -17,18 +17,14 @@
   <ion-card>
 
     <ion-item>
-      <h2>Mukena Spandek Brukat Fanta Renda Hitam</h2>
-      <p>Rp 135.000</p>
+      <h2>{{items?.name}}</h2>
+      <p>Rp {{items?.price}}</p>
     </ion-item>
 
-    <img src="http://belimukena.com/wp-content/uploads/2018/07/Mukena-Spandek-Brukat-Fanta-Renda-Hitam.jpg">
+    <img src="{{items?.images}}">
 
     <ion-card-content>
-      <p>BAHAN : SPANDEK SUTRA
-        SET : MUKENA (ATASAN + BAWAHAN) + TAS
-        DETAIL :
-        ATASAN (DEPAN 117cm, BELAKANG 120cm)
-        BAWAHAN 115 cm</p>
+      <p [innerHTML]="items?.description"></p>
     </ion-card-content>
 
 

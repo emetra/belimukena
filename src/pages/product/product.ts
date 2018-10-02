@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {ProductdetailPage} from "../productdetail/productdetail";
 import { ProductServiceProvider } from '../../providers/product-service/product-service';
+import { Storage } from '@ionic/storage';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the ProductPage page.
@@ -10,7 +12,6 @@ import { ProductServiceProvider } from '../../providers/product-service/product-
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-product',
   templateUrl: 'product.html',
@@ -19,7 +20,8 @@ export class ProductPage {
 
   item : any;
   items : any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productService: ProductServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams
+    , public productService: ProductServiceProvider,public storage: Storage) {
   }
 
 
@@ -43,7 +45,18 @@ export class ProductPage {
     }
   }
 
-  doDetailProducts() {
-    this.navCtrl.push(ProductdetailPage);
+  addToCart(){
+    this.storage.get('user_id').then(userid => {
+      if(userid == null) {
+        this.navCtrl.push(LoginPage);
+      }
+      else{
+        // gotocart
+      }
+    });
+  }
+
+  doDetailProducts(item) {
+    this.navCtrl.push(ProductdetailPage,{items: item});
   }
 }

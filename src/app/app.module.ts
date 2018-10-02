@@ -7,7 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import { IonicStorageModule } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {NavbarPage} from "../pages/navbar/navbar";
@@ -23,6 +23,8 @@ import { ProductServiceProvider } from '../providers/product-service/product-ser
 import { OrderstatusPage } from '../pages/orderstatus/orderstatus';
 import { HttpModule } from '@angular/http';
 import { SubcategoryPage } from '../pages/subcategory/subcategory';
+import { LoginPage } from '../pages/login/login';
+import { LoginServiceProvider } from '../providers/login-service/login-service';
 
 @NgModule({
   declarations: [
@@ -40,14 +42,16 @@ import { SubcategoryPage } from '../pages/subcategory/subcategory';
     ProductdetailPage,
     BestsellerPage,
     OrderstatusPage,
-    SubcategoryPage
+    SubcategoryPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       tabsHideOnSubPages: true
     }),
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,7 +69,8 @@ import { SubcategoryPage } from '../pages/subcategory/subcategory';
     ProductdetailPage,
     BestsellerPage,
     OrderstatusPage,
-    SubcategoryPage
+    SubcategoryPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -73,7 +78,8 @@ import { SubcategoryPage } from '../pages/subcategory/subcategory';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiServiceProvider,
     AuthServiceProvider,
-    ProductServiceProvider
+    ProductServiceProvider,
+    LoginServiceProvider
   ]
 })
 export class AppModule {}

@@ -45,4 +45,13 @@ export class ProductServiceProvider {
         return res.json()
       });
   }
+
+  getProductDetail(data):Observable<any> {
+    let url = this.apiService.API_URL + '/products/'+data.id;
+
+    return this.http.get(url)
+      .map(res => {
+        return res.json()
+      });
+  }
 }

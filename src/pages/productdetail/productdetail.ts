@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { ProductServiceProvider } from '../../providers/product-service/product-service';
 
 /**
  * Generated class for the ProductdetailPage page.
@@ -8,18 +9,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-productdetail',
   templateUrl: 'productdetail.html',
 })
 export class ProductdetailPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  item: any;
+  items: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public productService : ProductServiceProvider) {
+  }
+  ionViewDidLoad() {
+    this.item = this.navParams.get("items");
+    console.log(this.item);
+    this.getProductDetail();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductdetailPage');
+  getProductDetail(){
+    this.productService.getProductDetail(this.item).subscribe(res => {
+      this.items = res.data;
+    })
   }
 
 }
