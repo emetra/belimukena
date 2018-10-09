@@ -4,6 +4,7 @@ import {ProductdetailPage} from "../productdetail/productdetail";
 import { ProductServiceProvider } from '../../providers/product-service/product-service';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
+import { CartServiceProvider } from '../../providers/cart-service/cart-service';
 
 /**
  * Generated class for the ProductPage page.
@@ -21,7 +22,8 @@ export class ProductPage {
   item : any;
   items : any;
   constructor(public navCtrl: NavController, public navParams: NavParams
-    , public productService: ProductServiceProvider,public storage: Storage) {
+    , public productService: ProductServiceProvider,public storage: Storage,
+    public cartService: CartServiceProvider) {
   }
 
 
@@ -45,13 +47,19 @@ export class ProductPage {
     }
   }
 
-  addToCart(){
+  addToCart(id){
+    console.log(id);
     this.storage.get('user_id').then(userid => {
       if(userid == null) {
         this.navCtrl.push(LoginPage);
       }
       else{
-        // gotocart
+        let data = {
+          product_id: id
+        }; 
+        this.cartService.addtoCart(data).subscribe(res => {
+          console.log(res);
+        });
       }
     });
   }

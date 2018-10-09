@@ -23,7 +23,7 @@
           <p>{{item.name}} </p>
           <p>Rp {{item.price}}</p>
         </div>
-        <button ion-button block (click)="addToCart()">
+        <button ion-button block (click)="addToCart(item.id)">
           <ion-icon name="cart" padding-right></ion-icon>
           Beli
         </button>

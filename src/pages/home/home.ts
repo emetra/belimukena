@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {ProductdetailPage} from "../productdetail/productdetail";
 import { ProductServiceProvider } from '../../providers/product-service/product-service';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'page-home',
@@ -10,7 +12,8 @@ import { ProductServiceProvider } from '../../providers/product-service/product-
 export class HomePage {
   items : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productService : ProductServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams
+    ,public storage: Storage, public productService : ProductServiceProvider) {
 
   }
 

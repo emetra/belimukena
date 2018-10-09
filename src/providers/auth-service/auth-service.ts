@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { ApiServiceProvider } from '../api-service/api-service';
+import "rxjs";
 
 /*
   Generated class for the AuthServiceProvider provider.
@@ -19,10 +20,24 @@ export class AuthServiceProvider {
 
   login(data):Observable<any> {
     let url = this.apiService.API_URL + '/login';
+    let headers = new Headers({
+          'Content-Type': 'application/json',
+          'Accept': '*/*'
+      });
+      
+    let options = new RequestOptions({ headers: headers });
+    
+    let body = {
+      'email': data.email,
+      'password' : data.password
+    }
 
-    return this.http.post(url, data)
+    return this.http.post(url, body, options)
       .map(res => {
-        return res.json()
+        return res.json();
+      })
+      .catch(err => {
+        return err;
       });
   }
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { CartServiceProvider } from '../../providers/cart-service/cart-service';
 
 /**
  * Generated class for the CartPage page.
@@ -14,11 +15,23 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class CartPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  carts : any;
+  items : any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public cartService: CartServiceProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CartPage');
+    this.getCart();
+  }
+
+  getCart(){
+    this.cartService.getCarts().subscribe(res => {
+      this.carts = res;
+      this.items = res.item;
+      console.log(res);
+    console.log(this.carts.item);
+    })
   }
 
 }

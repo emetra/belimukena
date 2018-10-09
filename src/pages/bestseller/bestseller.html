@@ -19,7 +19,7 @@
 <ion-content padding>
   <ion-grid text-center>
     <ion-row>
-      <ion-col col-6 *ngFor="let item of items; let i = index;" (click)="doDetailProducts()">
+      <ion-col col-6 *ngFor="let item of items; let i = index;" (click)="doDetailProducts(item)">
         <div>
           <img src="{{item.images}}">
           <p>{{item.name}}</p>

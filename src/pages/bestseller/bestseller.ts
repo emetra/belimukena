@@ -34,8 +34,8 @@ export class BestsellerPage {
     })
   }
 
-  doDetailProducts() {
-    this.navCtrl.push(ProductdetailPage);
+  doDetailProducts(item) {
+    this.navCtrl.push(ProductdetailPage,{items: item});
   }
 
 }

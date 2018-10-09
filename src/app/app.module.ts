@@ -24,7 +24,7 @@ import { OrderstatusPage } from '../pages/orderstatus/orderstatus';
 import { HttpModule } from '@angular/http';
 import { SubcategoryPage } from '../pages/subcategory/subcategory';
 import { LoginPage } from '../pages/login/login';
-import { LoginServiceProvider } from '../providers/login-service/login-service';
+import { CartServiceProvider } from '../providers/cart-service/cart-service';
 
 @NgModule({
   declarations: [
@@ -79,7 +79,7 @@ import { LoginServiceProvider } from '../providers/login-service/login-service';
     ApiServiceProvider,
     AuthServiceProvider,
     ProductServiceProvider,
-    LoginServiceProvider
+    CartServiceProvider
   ]
 })
 export class AppModule {}
