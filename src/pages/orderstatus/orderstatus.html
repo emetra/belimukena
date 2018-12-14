@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>orderstatus</ion-title>
+    <ion-title>Status Order</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,18 +15,24 @@
 
 <ion-content padding>
   <div padding>
-    <ion-segment [(ngModel)]="pet">
-      <ion-segment-button value="kittens">
-        Kittens
+    <ion-segment [(ngModel)]="orderstat">
+      <ion-segment-button value="belumdibayar">
+        Pembayaran
       </ion-segment-button>
-      <ion-segment-button value="puppies">
-        Puppies
+      <ion-segment-button value="menungguproses">
+        Proses
+      </ion-segment-button>
+      <ion-segment-button value="Lunas">
+        Lunas
+      </ion-segment-button>
+      <ion-segment-button value="menungguproses">
+        Menunggu Proses
       </ion-segment-button>
     </ion-segment>
   </div>
   
-  <div [ngSwitch]="pet">
-    <ion-list *ngSwitchCase="'puppies'">
+  <div [ngSwitch]="orderstat">
+    <ion-list *ngSwitchCase="'belumdibayar'">
       <ion-item>
         <ion-thumbnail item-start>
           <img src="img/thumbnail-puppy-1.jpg">
@@ -36,7 +42,7 @@
       ...
     </ion-list>
   
-    <ion-list *ngSwitchCase="'kittens'">
+    <ion-list *ngSwitchCase="'menungguproses'">
       <ion-item>
         <ion-thumbnail item-start>
           <img src="img/thumbnail-kitten-1.jpg">

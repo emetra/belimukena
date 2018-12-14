@@ -10,21 +10,52 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  items : any;
+  data = [];
+  product = [];
+  errorMessage: string;
+  page = 1;
+  perPage = 0;
+  totalData = 0;
+  totalPage = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams
     ,public storage: Storage, public productService : ProductServiceProvider) {
+      this.getProduct();
 
   }
 
   ionViewDidLoad(){
-    this.getProduct();
+  }
+
+  doInfinite(infiniteScroll) {
+    this.page = this.page+1;
+    setTimeout(() => {
+      this.productService.getProducts(this.page)
+         .subscribe(
+           res => {
+             console.log(res.data);
+             this.data = res.data;
+             this.perPage = res.meta.per_page;
+             this.totalData = res.meta.total;
+             this.totalPage = res.meta.last_page;
+             for(let i=0; i<this.data.length; i++) {
+               this.product.push(this.data[i]);
+             }
+           },
+           error =>  this.errorMessage = <any>error);
+      infiniteScroll.complete();
+    }, 1000);
+    console.log(this.data);
   }
 
   getProduct(){
-    this.productService.getProducts().subscribe(res => {
-      this.items = res.data;
-      console.log(res);
+    this.productService.getProducts(this.page).subscribe(
+      res => {
+        console.log(res.data);
+        this.product = res.data;
+        this.perPage = res.meta.per_page;
+        this.totalData = res.meta.total;
+        this.totalPage = res.meta.last_page;
     })
   }
 

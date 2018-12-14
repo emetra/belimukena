@@ -34,6 +34,7 @@ export class ProductdetailPage {
   }
   addToCart(){
     this.storage.get('user_id').then(userid => {
+      
       if(userid == null) {
         this.navCtrl.push(LoginPage);
       }

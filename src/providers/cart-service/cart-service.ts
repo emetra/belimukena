@@ -17,11 +17,12 @@ export class CartServiceProvider {
 
   }
 
-  getCarts():Observable<any> {
+  getCarts(data):Observable<any> {
     let url = this.apiService.API_URL + '/cart';
     let headers = new Headers({
       'Content-Type': 'application/json',
-      'Accept': '*/*'
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
       });
       
     let options = new RequestOptions({ headers: headers });
@@ -35,7 +36,8 @@ export class CartServiceProvider {
     let url = this.apiService.API_URL + '/cart';
     let headers = new Headers({
       'Content-Type': 'application/json',
-      'Accept': '*/*'
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
       });
     let options = new RequestOptions({ headers: headers });
     

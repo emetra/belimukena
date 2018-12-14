@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import {ProductdetailPage} from "../productdetail/productdetail";
 import { ProductServiceProvider } from '../../providers/product-service/product-service';
 import { Storage } from '@ionic/storage';
@@ -21,9 +21,10 @@ export class ProductPage {
 
   item : any;
   items : any;
+  page = 1;
   constructor(public navCtrl: NavController, public navParams: NavParams
     , public productService: ProductServiceProvider,public storage: Storage,
-    public cartService: CartServiceProvider) {
+    public cartService: CartServiceProvider,public events : Events) {
   }
 
 
@@ -36,7 +37,7 @@ export class ProductPage {
   getProduct() {
     if(this.item == null)
     {
-      this.productService.getProducts().subscribe(res => {
+      this.productService.getProducts(this.page).subscribe(res => {
         this.items = res.data;
       })
     }
@@ -54,11 +55,15 @@ export class ProductPage {
         this.navCtrl.push(LoginPage);
       }
       else{
-        let data = {
-          product_id: id
-        }; 
-        this.cartService.addtoCart(data).subscribe(res => {
-          console.log(res);
+        this.storage.get('api_key').then(apiToken => {
+          let data = {
+            product_id: id,
+            apiToken : apiToken
+          }; 
+          this.cartService.addtoCart(data).subscribe(res => {
+            console.log(res);
+            this.events.publish('cart:update',{});
+          });
         });
       }
     });

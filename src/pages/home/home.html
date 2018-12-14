@@ -31,13 +31,17 @@
 
     <ion-row>
 
-      <ion-col col-6 *ngFor="let item of items; let i = index;" (click)="doDetailProducts(item)">
-        <div *ngIf = "i < 10"><img src="{{item.images}}"> <p>{{item.name}}</p>
+      <ion-col col-6 *ngFor="let item of product; let i = index;" (click)="doDetailProducts(item)">
+        <div><img src="{{item.images}}"> <p>{{item.name}}</p>
         </div>
       </ion-col>
 
     </ion-row>
 
-
   </ion-grid>
+
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

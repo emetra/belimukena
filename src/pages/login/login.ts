@@ -16,7 +16,10 @@ import { TabsPage } from '../tabs/tabs';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  login = {};
+  login = {
+    email : "",
+    password : ""
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public  alertCtrl: AlertController,public storage: Storage,public loadingCtrl: LoadingController
@@ -35,6 +38,7 @@ export class LoginPage {
   }
 
   doLogin() {
+    console.log(this.login);
     let loader = this.loadingCtrl.create({
       content: "Mohon menunggu...",
     });

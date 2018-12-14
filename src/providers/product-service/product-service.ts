@@ -28,13 +28,21 @@ export class ProductServiceProvider {
       });
   }
 
-  getProducts():Observable<any> {
-    let url = this.apiService.API_URL + '/products';
+  getProducts(page):Observable<any> {
+    let url = this.apiService.API_URL + '/products?page='+page;
 
     return this.http.get(url)
       .map(res => {
-        return res.json()
-      });
+        let body = res.json();
+        return body || { };
+      })
+      .catch(this.handleError);
+  }
+
+  private handleError (error: Response | any) {
+    let errMsg = `${error.status} - ${error.statusText || ''}`;
+   console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 
   getproductsByCategories(data):Observable<any> {
