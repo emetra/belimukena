@@ -51,5 +51,42 @@ export class CartServiceProvider {
       });
   }
 
+  updateQty(data):Observable<any> {
+    let url = this.apiService.API_URL + '/cart';
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+      });
+    let options = new RequestOptions({ headers: headers });
+    
+    let item = {
+      item_index: data.item_index,
+      qty: data.qty
+    };
 
+    return this.http.patch(url, item, options)
+      .map(res => {
+        return res.json();
+      });
+  }
+
+  removeCart(data):Observable<any> {
+    let url = this.apiService.API_URL + '/cart/'+ data.item_index;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+      });
+    let options = new RequestOptions({ headers: headers });
+    
+    let item = {
+      item_index: data.item_index
+    };
+
+    return this.http.patch(url, item, options)
+      .map(res => {
+        return res.json();
+      });
+  }
 }

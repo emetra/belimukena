@@ -8,15 +8,6 @@
 </ion-header>
 
 <ion-content>
-
-  <!--<div *ngIf="carts?.length == 0">-->
-    <!--<div class="no-transaction" text-center>-->
-      <!--<img src="assets/imgs/no_transaction.png" width="60%">-->
-      <!--<p class="message">Keranjang Belanja Anda Kosong</p>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<div *ngIf="carts?.length > 0">-->
     <ion-card *ngFor="let item of items; let i = index;" >
       <ion-list>
         <ion-item >
@@ -25,24 +16,22 @@
           </ion-thumbnail>
           <h2>{{item.name}}</h2>
           <div text-left class="price">
-            Rp ..
+            Rp {{item.price}}
           </div>
-          <div text-right>
+          <div text-right>  
             <div class="button-bar">
               <button ion-button small outline color="dark"><ion-icon name="remove"></ion-icon></button>
-              <button ion-button clear medium color="dark">2</button>
-              <button ion-button small outline color="dark"><ion-icon name="add"></ion-icon></button>
-              <button ion-button small color="danger" ><ion-icon name="trash"></ion-icon></button>
+              <button ion-button small outline color="dark" (click)="editCart(item)" ><ion-icon name="add"></ion-icon></button>
+              <button ion-button small color="danger" (click)="removeCart(item)" ><ion-icon name="trash"></ion-icon></button>
             </div>
           </div>
         </ion-item>
       </ion-list>
     </ion-card>
 
-  <!--</div>-->
 
 </ion-content>
 
 <ion-footer no-border padding>
-  <button ion-button round block >Next</button>
+  <button ion-button round block (click)="address()">Checkout</button>
 </ion-footer>

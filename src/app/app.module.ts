@@ -1,3 +1,6 @@
+import { CheckoutPage } from './../pages/checkout/checkout';
+import { DeliveryPage } from './../pages/delivery/delivery';
+import { AddressPage } from './../pages/address/address';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -25,6 +28,7 @@ import { HttpModule } from '@angular/http';
 import { SubcategoryPage } from '../pages/subcategory/subcategory';
 import { LoginPage } from '../pages/login/login';
 import { CartServiceProvider } from '../providers/cart-service/cart-service';
+import { CheckoutServiceProvider } from '../providers/checkout-service/checkout-service';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,10 @@ import { CartServiceProvider } from '../providers/cart-service/cart-service';
     BestsellerPage,
     OrderstatusPage,
     SubcategoryPage,
-    LoginPage
+    LoginPage,
+    AddressPage,
+    DeliveryPage,
+    CheckoutPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +77,10 @@ import { CartServiceProvider } from '../providers/cart-service/cart-service';
     BestsellerPage,
     OrderstatusPage,
     SubcategoryPage,
-    LoginPage
+    LoginPage,
+    AddressPage,
+    DeliveryPage,
+    CheckoutPage
   ],
   providers: [
     StatusBar,
@@ -79,7 +89,8 @@ import { CartServiceProvider } from '../providers/cart-service/cart-service';
     ApiServiceProvider,
     AuthServiceProvider,
     ProductServiceProvider,
-    CartServiceProvider
+    CartServiceProvider,
+    CheckoutServiceProvider
   ]
 })
 export class AppModule {}

@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar  color="primary">
+    <ion-title>Checkout</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color: rgb(248, 247, 247)">
+
+  <h1 text-center> <strong>PESANAN ANDA</strong> </h1>
+  <ion-item  *ngFor="let cart of checkout; let i = index">
+      <ion-thumbnail item-start>
+          <img src="">
+      </ion-thumbnail>
+      <h2 text-wrap>{{  cart.name }}</h2>
+      <p>Jumlah : {{ cart.qty | number }}</p>
+
+      <p text-wrap>Harga Satuan : Rp {{ cart.price | number }}</p>
+      <p text-wrap><strong>Total : Rp {{ +cart.price * +cart.qty | number }}</strong></p>
+  </ion-item>
+
+  
+  <h1 padding-left> <strong>Ringkasan Pembayaran</strong> </h1>
+  <ion-list>
+        <ion-item>
+            <p item-start><b>Total : </b></p><h1 item-end><b>Rp {{ 10000 | number}}</b></h1>
+        </ion-item>
+
+  </ion-list>
+
+  
+</ion-content>
+
+<ion-footer padding-left padding-right>
+  
+  <div text-center >
+      <button ion-button full color="navbar" (click)="delivery()">
+      delivery
+      </button>
+  </div>
+</ion-footer> 
