@@ -15,10 +15,13 @@ import { Storage } from '@ionic/storage';
   selector: 'page-cart',
   templateUrl: 'cart.html',
 })
+
 export class CartPage {
 
   carts : any;
   items : any;
+
+
 
   constructor(public navCtrl: NavController,public storage: Storage,public zone: NgZone, public navParams: NavParams,public cartService: CartServiceProvider,public events: Events) {
     events.subscribe('cart:update', () => {
@@ -33,6 +36,8 @@ export class CartPage {
   }
 
   getCart(){
+
+
     this.storage.get('api_key').then(apiToken => {
       let data = {
         apiToken: apiToken
@@ -41,7 +46,7 @@ export class CartPage {
       this.cartService.getCarts(data)
         .subscribe(result => {
           console.log(result);
-          this.items = result.items;
+          this.items = result.items[1];
           console.log(this.items);
         });
     });

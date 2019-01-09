@@ -28,7 +28,7 @@ export class BestsellerPage {
     let data = {
       slug : "best-seller"
     };
-    this.productService.getproductsByCategories(data).subscribe(res => {
+    this.productService.getproductsByCategories(data,1).subscribe(res => {
       this.items = res.data;
       console.log(res);
     })

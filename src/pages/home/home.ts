@@ -17,6 +17,7 @@ export class HomePage {
   perPage = 0;
   totalData = 0;
   totalPage = 0;
+  keyword: any = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams
     ,public storage: Storage, public productService : ProductServiceProvider) {
@@ -30,7 +31,7 @@ export class HomePage {
   doInfinite(infiniteScroll) {
     this.page = this.page+1;
     setTimeout(() => {
-      this.productService.getProducts(this.page)
+      this.productService.getProducts(this.page,this.keyword)
          .subscribe(
            res => {
              console.log(res.data);
@@ -49,7 +50,7 @@ export class HomePage {
   }
 
   getProduct(){
-    this.productService.getProducts(this.page).subscribe(
+    this.productService.getProducts(this.page,this.keyword).subscribe(
       res => {
         console.log(res.data);
         this.product = res.data;

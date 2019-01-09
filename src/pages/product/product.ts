@@ -22,6 +22,13 @@ export class ProductPage {
   item : any;
   items : any;
   page = 1;
+  perPage = 0;
+  totalData = 0;
+  totalPage = 0;
+  data = [];
+  product = [];
+  errorMessage: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams
     , public productService: ProductServiceProvider,public storage: Storage,
     public cartService: CartServiceProvider,public events : Events) {
@@ -34,16 +41,37 @@ export class ProductPage {
     this.getProduct();
   }
 
+  doInfinite(infiniteScroll) {
+    this.page = this.page+1;
+    setTimeout(() => {
+      this.productService.getproductsByCategories(this.item,this.page)
+         .subscribe(
+           res => {
+             console.log(res.data);
+             this.data = res.data;
+             this.perPage = res.meta.per_page;
+             this.totalData = res.meta.total;
+             this.totalPage = res.meta.last_page;
+             for(let i=0; i<this.data.length; i++) {
+               this.product.push(this.data[i]);
+             }
+           },
+           error =>  this.errorMessage = <any>error);
+      infiniteScroll.complete();
+    }, 1000);
+    console.log(this.data);
+  }
+
   getProduct() {
     if(this.item == null)
     {
-      this.productService.getProducts(this.page).subscribe(res => {
-        this.items = res.data;
+      this.productService.getProducts(this.page,'').subscribe(res => {
+        this.product = res.data;
       })
     }
     else{
-      this.productService.getproductsByCategories(this.item).subscribe(res => {
-        this.items = res.data;
+      this.productService.getproductsByCategories(this.item,this.page).subscribe(res => {
+        this.product = res.data;
       })
     }
   }

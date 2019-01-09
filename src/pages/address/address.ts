@@ -1,3 +1,4 @@
+import { DeliveryPage } from './../delivery/delivery';
 import { CheckoutServiceProvider } from './../../providers/checkout-service/checkout-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -21,12 +22,14 @@ export class AddressPage {
   city: any;
   region: any;
   items: any;
+  recipient={};
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public checkoutService: CheckoutServiceProvider,public storage: Storage) {
   }
 
   ionViewDidLoad() {
+    this.getCheckout();
     console.log('ionViewDidLoad AddressPage');
   }
 
@@ -39,10 +42,14 @@ export class AddressPage {
         this.checkoutService.getCheckout(data)
           .subscribe(result => {
             console.log(result);
-            this.items = result.items;
-            console.log(this.items);
+            this.recipient['name'] = result.recipient.name;
+            this.recipient['address'] = result.recipient.address;
+            this.recipient['phone'] = result.recipient.phone;
           });
       });
   }
 
+  delivery(){
+    this.navCtrl.push(DeliveryPage);
+  }
 }

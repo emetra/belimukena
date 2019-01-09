@@ -18,7 +18,7 @@ export class CheckoutServiceProvider {
   }
 
   getCheckout(data):Observable<any> {
-    let url = this.apiService.API_URL + '/cart';
+    let url = this.apiService.API_URL + '/checkout';
     let headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': '*/*',

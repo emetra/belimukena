@@ -16,11 +16,11 @@
 <ion-content padding>
   <ion-item-divider color="light"><H4 style="font-size: 14px;">Nama Lengkap</H4></ion-item-divider>
   <ion-item style="padding-bottom: 10px;">
-      <ion-input type="text" placeholder="Nama Lengkap" style="height: 50px;" [(ngModel)]="items.recipient.name"></ion-input>
+      <ion-input type="text" placeholder="Nama Lengkap" style="height: 50px;" [(ngModel)]="recipient.name"></ion-input>
   </ion-item>
   <ion-item-divider color="light"><H4 style="font-size: 14px;">Nomor Telepon</H4></ion-item-divider>
   <ion-item style="padding-bottom: 10px;">
-      <ion-input type="tel" placeholder="Nomor Telepon" style="height: 50px;" [(ngModel)]="items.recipient.phone"></ion-input>
+      <ion-input type="tel" placeholder="Nomor Telepon" style="height: 50px;" [(ngModel)]="recipient.phone"></ion-input>
   </ion-item>
   <!-- <ion-item-divider color="light"><H4 style="font-size: 14px;">Email</H4></ion-item-divider>
   <ion-item style="padding-bottom: 10px;">
@@ -29,11 +29,11 @@
   
   <ion-item-divider color="light"><H4 style="font-size: 14px;">Alamat Lengkap</H4></ion-item-divider>
   <ion-item style="padding-bottom: 10px;">
-      <ion-textarea lineHeight='20' name="notes" placeholder="Alamat Lengkap" [(ngModel)]="items.recipient.address"></ion-textarea>
+      <ion-textarea lineHeight='20' name="notes" placeholder="Alamat Lengkap" [(ngModel)]="recipient.address"></ion-textarea>
   </ion-item>
   <ion-item-divider color="light"><H4 style="font-size: 14px;">Provinsi</H4></ion-item-divider>
   <ion-item style="padding-bottom: 10px;">
-      <ion-input type="text" placeholder="Provinsi" readonly style="height: 50px;" [(ngModel)]="items.shipment.name"></ion-input>
+      <ion-input type="text" placeholder="Provinsi" readonly style="height: 50px;"></ion-input>
       <button item-end ion-button small icon-only clear ><ion-icon name="search"></ion-icon></button>
   </ion-item>
   <ion-item-divider color="light"><H4 style="font-size: 14px;">Kota</H4></ion-item-divider>
@@ -50,4 +50,9 @@
   <ion-item style="padding-bottom: 10px;">
       <ion-input type="tel" placeholder="Kode Pos" style="height: 50px;"></ion-input>
   </ion-item>
+
 </ion-content>
+
+<ion-footer no-border padding>
+    <button ion-button round block (click)="delivery()">Checkout</button>
+</ion-footer>

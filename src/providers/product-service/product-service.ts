@@ -28,8 +28,8 @@ export class ProductServiceProvider {
       });
   }
 
-  getProducts(page):Observable<any> {
-    let url = this.apiService.API_URL + '/products?page='+page;
+  getProducts(page,query):Observable<any> {
+    let url = this.apiService.API_URL + '/products?page='+page+'&query='+query;
 
     return this.http.get(url)
       .map(res => {
@@ -45,8 +45,8 @@ export class ProductServiceProvider {
     return Observable.throw(errMsg);
   }
 
-  getproductsByCategories(data):Observable<any> {
-    let url = this.apiService.API_URL + '/categories/'+data.slug+'/products';
+  getproductsByCategories(data,page):Observable<any> {
+    let url = this.apiService.API_URL + '/categories/'+data.slug+'/products?page='+page;
 
     return this.http.get(url)
       .map(res => {
