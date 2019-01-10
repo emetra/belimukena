@@ -1,3 +1,4 @@
+import { ProfilePage } from './../pages/profile/profile';
 import { Component , ViewChild } from '@angular/core';
 import { Nav , Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -22,7 +23,8 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: TabsPage},
       { title: 'Category', component: CategoryPage},
-      { title: 'Status Order', component: OrderstatusPage}
+      { title: 'Status Order', component: OrderstatusPage},
+      { title: 'My Profile', component: ProfilePage}
     ];
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

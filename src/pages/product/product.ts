@@ -32,13 +32,13 @@ export class ProductPage {
   constructor(public navCtrl: NavController, public navParams: NavParams
     , public productService: ProductServiceProvider,public storage: Storage,
     public cartService: CartServiceProvider,public events : Events) {
+      
+    this.item = this.navParams.get("items");
+    this.getProduct();
   }
 
 
   ionViewDidLoad() {
-    this.item = this.navParams.get("items");
-    console.log(this.item);
-    this.getProduct();
   }
 
   doInfinite(infiniteScroll) {
@@ -67,11 +67,17 @@ export class ProductPage {
     {
       this.productService.getProducts(this.page,'').subscribe(res => {
         this.product = res.data;
+        this.perPage = res.meta.per_page;
+        this.totalData = res.meta.total;
+        this.totalPage = res.meta.last_page;
       })
     }
     else{
       this.productService.getproductsByCategories(this.item,this.page).subscribe(res => {
         this.product = res.data;
+        this.perPage = res.meta.per_page;
+        this.totalData = res.meta.total;
+        this.totalPage = res.meta.last_page;
       })
     }
   }

@@ -1,3 +1,4 @@
+import { ProfilePage } from './../pages/profile/profile';
 import { CheckoutPage } from './../pages/checkout/checkout';
 import { DeliveryPage } from './../pages/delivery/delivery';
 import { AddressPage } from './../pages/address/address';
@@ -29,6 +30,9 @@ import { SubcategoryPage } from '../pages/subcategory/subcategory';
 import { LoginPage } from '../pages/login/login';
 import { CartServiceProvider } from '../providers/cart-service/cart-service';
 import { CheckoutServiceProvider } from '../providers/checkout-service/checkout-service';
+import { ProfileServiceProvider } from '../providers/profile-service/profile-service';
+import { OrderServiceProvider } from '../providers/order-service/order-service';
+import { OrderconfirmationPage } from '../pages/orderconfirmation/orderconfirmation';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,9 @@ import { CheckoutServiceProvider } from '../providers/checkout-service/checkout-
     LoginPage,
     AddressPage,
     DeliveryPage,
-    CheckoutPage
+    CheckoutPage,
+    ProfilePage,
+    OrderconfirmationPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,9 @@ import { CheckoutServiceProvider } from '../providers/checkout-service/checkout-
     LoginPage,
     AddressPage,
     DeliveryPage,
-    CheckoutPage
+    CheckoutPage,
+    ProfilePage,
+    OrderconfirmationPage
   ],
   providers: [
     StatusBar,
@@ -90,7 +98,9 @@ import { CheckoutServiceProvider } from '../providers/checkout-service/checkout-
     AuthServiceProvider,
     ProductServiceProvider,
     CartServiceProvider,
-    CheckoutServiceProvider
+    CheckoutServiceProvider,
+    ProfileServiceProvider,
+    OrderServiceProvider
   ]
 })
 export class AppModule {}
