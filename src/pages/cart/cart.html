@@ -21,11 +21,11 @@
           <div text-right class="subtotal">
             Rp {{item.subtotal | number}}
           </div>
-          <div text-right>  
+          <div text-right>
             <div class="button-bar">
               <!-- <button ion-button small outline color="dark"><ion-icon name="remove"></ion-icon></button> -->
-              <button ion-button small outline color="dark" (click)="qtyPrompt(item)" ><ion-icon name="create"></ion-icon></button>
-              <button ion-button small color="danger" (click)="removeCart(item)" ><ion-icon name="trash"></ion-icon></button>
+              <button ion-button small outline color="primary" (click)="qtyPrompt(item)" ><ion-icon color="primary" name="create"></ion-icon></button>
+              <button ion-button small color="primary" (click)="removeCart(item)" ><ion-icon name="trash"></ion-icon></button>
             </div>
           </div>
         </ion-item>

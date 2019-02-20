@@ -17,10 +17,17 @@ import { Storage } from '@ionic/storage';
 export class OrderstatusPage {
   segment : any = 'confirm';
   orderlist : any;
+  public category: string = 'segment';
+  public categories: Array<string> = ['confirm', 'menunggu', 'proses','dikirim','batal']
+
 
   constructor(public navCtrl: NavController,public orderCtrl: OrderServiceProvider
             , public navParams: NavParams,public storage: Storage) {
 
+  }
+
+  onTabChanged(tabName) {
+    this.category = tabName;
   }
 
   ionViewDidLoad() {

@@ -34,6 +34,7 @@ import { ProfileServiceProvider } from '../providers/profile-service/profile-ser
 import { OrderServiceProvider } from '../providers/order-service/order-service';
 import { OrderconfirmationPage } from '../pages/orderconfirmation/orderconfirmation';
 import { SuperTabsModule } from 'ionic2-super-tabs';
+import {SwipeSegmentDirective} from "../directives/swipe-segment/swipe-segment";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
     DeliveryPage,
     CheckoutPage,
     ProfilePage,
-    OrderconfirmationPage
+    OrderconfirmationPage,
+    SwipeSegmentDirective
   ],
   imports: [
     SuperTabsModule,

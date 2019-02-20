@@ -24,7 +24,7 @@ export class OrderServiceProvider {
       'Accept': '*/*',
       'Authorization': 'Bearer ' + data.apiToken
       });
-    
+
     let options = new RequestOptions({ headers: headers });
     return this.http.get(url,options)
       .map(res => {

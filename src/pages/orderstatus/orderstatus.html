@@ -14,9 +14,12 @@
 
 <ion-content>
     <div padding>
-        <ion-segment [(ngModel)]="segment">
+        <ion-segment [(ngModel)]="category">
             <ion-segment-button value="confirm">
                 Konfirmasi Pembayaran
+              </ion-segment-button>
+              <ion-segment-button value="menunggu">
+                Menunggu Proses
               </ion-segment-button>
               <ion-segment-button value="proses">
                 Sedang Diproses
@@ -29,11 +32,11 @@
               </ion-segment-button>
         </ion-segment>
       </div>
-      
-      <div [ngSwitch]="segment">
+
+      <div [ngSwitch]="category" swipeSegment [tabsList]="categories" [(currentTab)]="category" (tabChanged)="onTabChanged($event)" class="swipe-area">
         <ion-list *ngSwitchCase="'confirm'">
             <div *ngFor="let item of orderlist">
-                <button ion-item *ngIf="(item.status_id == 1 || item.status_id == 2)">
+                <button ion-item *ngIf="(item.status_id == 1)">
                   <ion-card>
                       <ion-card-header>
                           {{item.invoice_number}}
@@ -48,14 +51,32 @@
                 </button>
             </div>
         </ion-list>
-      
-        <ion-list *ngSwitchCase="'proses'">
+
+        <ion-list *ngSwitchCase="'menunggu'">
             <div *ngFor="let item of orderlist">
-                <ion-item *ngIf="(item.status_id == 3)">{{item.status}}</ion-item>
+                <ion-item *ngIf="(item.status_id == 2)">{{item.status}}</ion-item>
             </div>
         </ion-list>
+
+        <ion-list *ngSwitchCase="'proses'">
+          <div *ngFor="let item of orderlist">
+            <ion-item *ngIf="(item.status_id == 3)">{{item.status}}</ion-item>
+          </div>
+        </ion-list>
+
+          <ion-list *ngSwitchCase="'dikirim'">
+          <div *ngFor="let item of orderlist">
+            <ion-item *ngIf="(item.status_id == 4)">{{item.status}}</ion-item>
+          </div>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'batal'">
+          <div *ngFor="let item of orderlist">
+            <ion-item *ngIf="(item.status_id == 5)">{{item.status}}</ion-item>
+          </div>
+        </ion-list>
       </div>
-   
+
   <!-- <div>
     <ion-segment [(ngModel)]="orderstat">
       <ion-segment-button value="belumdibayar">
