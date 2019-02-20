@@ -6,13 +6,54 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>profile</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Profile</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <ion-card>
+        <form enctype="multipart/form-data">
+          <ion-item>
+            <ion-label>Nama</ion-label>
+            <ion-input text-end type="text" name="name" [(ngModel)]="user.name"></ion-input>
+          </ion-item>
+        
+          <ion-item>
+            <ion-label>E-mail</ion-label>
+            <ion-input text-end type="email" name="email" [(ngModel)]="user.email"></ion-input>
+          </ion-item>
+        
+          <ion-item>
+            <ion-label>Nomor Ponsel</ion-label>
+            <ion-input text-end type="tel" name="phone" [(ngModel)]="user.phone"></ion-input>
+          </ion-item>
+        
+          <ion-item>
+              <ion-label>Alamat</ion-label>
+              <ion-textarea placeholder="Alamat" name="address" [(ngModel)]="user.address" readonly></ion-textarea>
+          </ion-item>
+        
+          <!-- <ion-item padding-bottom="5px">
+            <ion-label>Kota</ion-label>
+            <ion-select text-end name="city_id" [(ngModel)]="user.city_id">
+              <ion-option *ngFor="let city of cities" value="{{ city.id }}" selected="{{ user.city_id == city.id }}">
+                {{ city.name }}
+              </ion-option>
+            </ion-select>
+            <ion-icon name="md-create" color="primary" small item-end></ion-icon>
+          </ion-item> -->
+        
+ 
+          </form>
+      </ion-card>
 </ion-content>
+
+<ion-footer>
+    <div padding>
+        <button ion-button block (click)="updateProfile()">Ubah</button>
+        <button ion-button outline block (click)="changePassword()">Ubah Password</button>
+      </div>
+</ion-footer>

@@ -15,17 +15,22 @@
 
 <ion-content padding>
   <ion-list>
+    <ion-label>Pengirim</ion-label>
+    <h2>{{origin}}</h2>
+    <ion-label>Tujuan</ion-label>
+    <h2>{{destination}}</h2>
+  </ion-list>
+  <ion-list>
     <ion-item>
       <ion-label>Jasa Pengiriman</ion-label>
-      <ion-select>
-        <ion-option value="nes">JNE Reguler</ion-option>
-        <ion-option value="n64">JNE OKE</ion-option>
-        <ion-option value="ps">JNE YES</ion-option>
+      <ion-select (ionChange)="onChange($event)" okText="Pilih" cancelText="Batal">
+        <ion-option *ngFor="let costs of listcost"  value="{{costs.service}}">JNE {{costs.service}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
 
   
   <ion-item-divider></ion-item-divider>
-  <h3 padding-left padding-right text-center> Harga : Rp 10.000,- </h3>
+  <ion-label>Estimasi : {{ est }}</ion-label>
+  <h3 padding-left padding-right text-center> Harga : Rp {{ cost | number}},- </h3>
 </ion-content>

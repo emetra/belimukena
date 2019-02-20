@@ -33,6 +33,7 @@ import { CheckoutServiceProvider } from '../providers/checkout-service/checkout-
 import { ProfileServiceProvider } from '../providers/profile-service/profile-service';
 import { OrderServiceProvider } from '../providers/order-service/order-service';
 import { OrderconfirmationPage } from '../pages/orderconfirmation/orderconfirmation';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { OrderconfirmationPage } from '../pages/orderconfirmation/orderconfirmat
     OrderconfirmationPage
   ],
   imports: [
+    SuperTabsModule,
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       tabsHideOnSubPages: true

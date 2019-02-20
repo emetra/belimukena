@@ -9,12 +9,54 @@
   <ion-navbar color="primary">
     <ion-title>Status Order</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-  <div padding>
+<ion-content>
+    <div padding>
+        <ion-segment [(ngModel)]="segment">
+            <ion-segment-button value="confirm">
+                Konfirmasi Pembayaran
+              </ion-segment-button>
+              <ion-segment-button value="proses">
+                Sedang Diproses
+              </ion-segment-button>
+              <ion-segment-button value="dikirim">
+                Sedang Dikirim
+              </ion-segment-button>
+              <ion-segment-button value="batal">
+                Batal
+              </ion-segment-button>
+        </ion-segment>
+      </div>
+      
+      <div [ngSwitch]="segment">
+        <ion-list *ngSwitchCase="'confirm'">
+            <div *ngFor="let item of orderlist">
+                <button ion-item *ngIf="(item.status_id == 1 || item.status_id == 2)">
+                  <ion-card>
+                      <ion-card-header>
+                          {{item.invoice_number}}
+                      </ion-card-header>
+                    <ion-card-content>
+                      <ion-card-title>
+                          {{item.status}}
+                      </ion-card-title>
+                          {{item.created_at}}
+                    </ion-card-content>
+                    </ion-card>
+                </button>
+            </div>
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'proses'">
+            <div *ngFor="let item of orderlist">
+                <ion-item *ngIf="(item.status_id == 3)">{{item.status}}</ion-item>
+            </div>
+        </ion-list>
+      </div>
+   
+  <!-- <div>
     <ion-segment [(ngModel)]="orderstat">
       <ion-segment-button value="belumdibayar">
         Pembayaran
@@ -29,27 +71,5 @@
         Menunggu Proses
       </ion-segment-button>
     </ion-segment>
-  </div>
-  
-  <div [ngSwitch]="orderstat">
-    <ion-list *ngSwitchCase="'belumdibayar'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="img/thumbnail-puppy-1.jpg">
-        </ion-thumbnail>
-        <h2>Ruby</h2>
-      </ion-item>
-      ...
-    </ion-list>
-  
-    <ion-list *ngSwitchCase="'menungguproses'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="img/thumbnail-kitten-1.jpg">
-        </ion-thumbnail>
-        <h2>Luna</h2>
-      </ion-item>
-      ...
-    </ion-list>
-  </div>
+  </div> -->
 </ion-content>

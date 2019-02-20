@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { OrderServiceProvider } from '../../providers/order-service/order-service';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the OrderstatusPage page.
@@ -13,12 +15,29 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'orderstatus.html',
 })
 export class OrderstatusPage {
+  segment : any = 'confirm';
+  orderlist : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,public orderCtrl: OrderServiceProvider
+            , public navParams: NavParams,public storage: Storage) {
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderstatusPage');
+    this.getOrder();
   }
 
+  getOrder(){
+    this.storage.get('api_key').then(apiToken => {
+      let data = {
+        apiToken: apiToken
+      };
+
+      this.orderCtrl.getTransactionList(data)
+        .subscribe(result => {
+          console.log(result.data);
+          this.orderlist = result.data;
+        });
+    });
+  }
 }

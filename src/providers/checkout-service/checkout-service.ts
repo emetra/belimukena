@@ -32,4 +32,18 @@ export class CheckoutServiceProvider {
       });
   }
 
+  getCost(data):Observable<any> {
+    let url = this.apiService.ONGKIR_API + '/costs?district_id='+data.district_id;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+      });
+      
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(url,options)
+      .map(res => {
+        return res.json()
+      });
+  }
 }

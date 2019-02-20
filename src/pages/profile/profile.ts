@@ -1,5 +1,7 @@
+import { ProfileServiceProvider } from './../../providers/profile-service/profile-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ProfilePage page.
@@ -15,11 +17,37 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user = {};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public profileService :ProfileServiceProvider, public storage : Storage) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    this.getProfile();
   }
+
+  getProfile(){
+    this.storage.get('api_key').then(apiToken => {
+      let data = {
+        apiToken: apiToken
+      };
+
+      this.profileService.getProfile(data)
+        .subscribe(result => {
+          this.user = result.data;
+          console.log(result);
+        });
+    });
+  }
+
+  updateProfile(){
+
+  }
+
+  changePassword(){
+
+  }
+
 
 }

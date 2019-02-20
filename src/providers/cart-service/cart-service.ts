@@ -72,19 +72,15 @@ export class CartServiceProvider {
   }
 
   removeCart(data):Observable<any> {
-    let url = this.apiService.API_URL + '/cart/'+ data.item_index;
+    let url = this.apiService.API_URL + '/cart/'+ data.product_id;
     let headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': '*/*',
       'Authorization': 'Bearer ' + data.apiToken
       });
     let options = new RequestOptions({ headers: headers });
-    
-    let item = {
-      item_index: data.item_index
-    };
 
-    return this.http.patch(url, item, options)
+    return this.http.delete(url, options)
       .map(res => {
         return res.json();
       });

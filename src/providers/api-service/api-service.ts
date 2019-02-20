@@ -15,5 +15,6 @@ export class ApiServiceProvider {
 
   public API_URL:string = "http://belimukena-api.nafies.id/api/v1";
   public BASE_API:string = "http://belimukena-api.nafies.id/api/v1";
+  public ONGKIR_API:string = "https://ongkir.belimukena.com/api/v1";
 }
 
