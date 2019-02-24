@@ -13,10 +13,10 @@
 
 
 <ion-content>
-    <div padding>
-        <ion-segment [(ngModel)]="category">
+    <div>
+        <ion-segment color="primary"[(ngModel)]="category">
             <ion-segment-button value="confirm">
-                Konfirmasi Pembayaran
+                Menunggu Konfirmasi
               </ion-segment-button>
               <ion-segment-button value="menunggu">
                 Menunggu Proses
@@ -54,25 +54,73 @@
 
         <ion-list *ngSwitchCase="'menunggu'">
             <div *ngFor="let item of orderlist">
-                <ion-item *ngIf="(item.status_id == 2)">{{item.status}}</ion-item>
+              <button ion-item *ngIf="(item.status_id == 2)">
+                <ion-card>
+                  <ion-card-header>
+                    {{item.invoice_number}}
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-card-title>
+                      {{item.status}}
+                    </ion-card-title>
+                    {{item.created_at}}
+                  </ion-card-content>
+                </ion-card>
+              </button>
             </div>
         </ion-list>
 
         <ion-list *ngSwitchCase="'proses'">
           <div *ngFor="let item of orderlist">
-            <ion-item *ngIf="(item.status_id == 3)">{{item.status}}</ion-item>
+            <button ion-item *ngIf="(item.status_id == 3)">
+              <ion-card>
+                <ion-card-header>
+                  {{item.invoice_number}}
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-card-title>
+                    {{item.status}}
+                  </ion-card-title>
+                  {{item.created_at}}
+                </ion-card-content>
+              </ion-card>
+            </button>
           </div>
         </ion-list>
 
           <ion-list *ngSwitchCase="'dikirim'">
           <div *ngFor="let item of orderlist">
-            <ion-item *ngIf="(item.status_id == 4)">{{item.status}}</ion-item>
+            <button ion-item *ngIf="(item.status_id == 4)">
+              <ion-card>
+                <ion-card-header>
+                  {{item.invoice_number}}
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-card-title>
+                    {{item.status}}
+                  </ion-card-title>
+                  {{item.created_at}}
+                </ion-card-content>
+              </ion-card>
+            </button>
           </div>
         </ion-list>
 
         <ion-list *ngSwitchCase="'batal'">
           <div *ngFor="let item of orderlist">
-            <ion-item *ngIf="(item.status_id == 5)">{{item.status}}</ion-item>
+            <button ion-item *ngIf="(item.status_id == 5)">
+              <ion-card>
+                <ion-card-header>
+                  {{item.invoice_number}}
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-card-title>
+                    {{item.status}}
+                  </ion-card-title>
+                  {{item.created_at}}
+                </ion-card-content>
+              </ion-card>
+            </button>
           </div>
         </ion-list>
       </div>

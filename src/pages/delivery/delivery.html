@@ -34,3 +34,7 @@
   <ion-label>Estimasi : {{ est }}</ion-label>
   <h3 padding-left padding-right text-center> Harga : Rp {{ cost | number}},- </h3>
 </ion-content>
+
+<ion-footer no-border padding>
+  <button ion-button round block (click)="payment()">Payment</button>
+</ion-footer>
