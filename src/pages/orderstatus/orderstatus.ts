@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams,LoadingController } from 'ionic-angular';
 import { OrderServiceProvider } from '../../providers/order-service/order-service';
 import { Storage } from '@ionic/storage';
+import {OrderdetailPage} from "../orderdetail/orderdetail";
 
 /**
  * Generated class for the OrderstatusPage page.
@@ -33,6 +34,9 @@ export class OrderstatusPage {
     this.getOrder();
   }
 
+  orderDetail(){
+    this.navCtrl.push(OrderdetailPage);
+  }
   getOrder(){
     let loader = this.loadingCtrl.create({
       'content': 'Mohon menunggu...'

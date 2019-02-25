@@ -39,6 +39,10 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
+  orange:     #FF8247,
+  lightblue:  #87CEFF,
+  darkblue:   #022c68,
+  darkgreen:  #006d62
 );
 
 
@@ -86,3 +90,6 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+$item-md-detail-push-show: true;
+$item-wp-detail-push-show: true;
