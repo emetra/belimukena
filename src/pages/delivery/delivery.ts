@@ -67,7 +67,6 @@ export class DeliveryPage {
         });
     });
   }
-
   payment(){
     this.navCtrl.push(PaymentPage);
   }
