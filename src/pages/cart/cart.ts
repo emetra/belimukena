@@ -48,12 +48,14 @@ export class CartPage {
       this.cartService.getCarts(data)
         .subscribe(result => {
           var arr = [];
-          Object.keys(result.items).forEach(function(key,index) {
-            arr.push(result.items[key]);
+          if(result.items != null) {
+            Object.keys(result.items).forEach(function (key, index) {
+              arr.push(result.items[key]);
               // key: the name of the object key
               // index: the ordinal position of the key within the object 
-          });
-          this.items = arr;
+            });
+          }
+            this.items = arr;
         });
     });
   }

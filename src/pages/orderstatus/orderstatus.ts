@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,LoadingController } from 'ionic-angular';
 import { OrderServiceProvider } from '../../providers/order-service/order-service';
 import { Storage } from '@ionic/storage';
 
@@ -15,14 +15,13 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'orderstatus.html',
 })
 export class OrderstatusPage {
-  segment : any = 'confirm';
   orderlist : any;
-  public category: string = 'segment';
+  public category: string = 'confirm';
   public categories: Array<string> = ['confirm', 'menunggu', 'proses','dikirim','batal']
 
 
   constructor(public navCtrl: NavController,public orderCtrl: OrderServiceProvider
-            , public navParams: NavParams,public storage: Storage) {
+            , public navParams: NavParams,public storage: Storage,public loadingCtrl: LoadingController) {
 
   }
 
@@ -35,6 +34,10 @@ export class OrderstatusPage {
   }
 
   getOrder(){
+    let loader = this.loadingCtrl.create({
+      'content': 'Mohon menunggu...'
+    });
+    loader.present();
     this.storage.get('api_key').then(apiToken => {
       let data = {
         apiToken: apiToken
@@ -42,9 +45,11 @@ export class OrderstatusPage {
 
       this.orderCtrl.getTransactionList(data)
         .subscribe(result => {
-          console.log(result.data);
+          loader.dismiss();
           this.orderlist = result.data;
         });
     });
   }
+
+
 }

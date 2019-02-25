@@ -2,6 +2,7 @@ import { CheckoutServiceProvider } from './../../providers/checkout-service/chec
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import {PaymentPage} from "../payment/payment";
 
 /**
  * Generated class for the DeliveryPage page.
@@ -66,5 +67,8 @@ export class DeliveryPage {
         });
     });
   }
+  payment(){
+    this.navCtrl.push(PaymentPage);
+  }
 
-} 
+}
