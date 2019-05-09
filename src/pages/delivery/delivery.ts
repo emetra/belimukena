@@ -20,6 +20,7 @@ export class DeliveryPage {
   courrier: any;
   origin: any;
   destination: any;
+
   est: any = "";
   listcost: any;
   cost = 0;
@@ -48,7 +49,7 @@ export class DeliveryPage {
   }
 
   onChange($event){
-    console.log($event);
+    console.log($event.cost[0].value);
   }
 
   getCost(){

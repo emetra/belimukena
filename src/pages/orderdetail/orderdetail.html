@@ -1,9 +1,3 @@
-<!--
-  Generated template for the OrderdetailPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="primary">
@@ -12,21 +6,78 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-row>
-    <ion-col>Tanggal Pembelian : </ion-col>
-    <ion-col>Batal Otomatis :</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>test</ion-col>
-    <ion-col>test</ion-col>
-  </ion-row>
-  <hr>
-  <ion-row>
-    <ion-col>test</ion-col>
-    <ion-col>test</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>test</ion-col>
-    <ion-col>test</ion-col>
-  </ion-row>
+  <div>
+    <ion-row>
+      <ion-col>Status : </ion-col>
+      <ion-col>{{product?.status}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>Tanggal Pembelian : </ion-col>
+      <ion-col>Batal Otomatis : </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><p>{{product?.created_at}}</p></ion-col>
+      <ion-col><p>24 jam</p></ion-col>
+    </ion-row>
+    <hr>
+    <ion-row>
+      <ion-col>Penerima :</ion-col>
+      <ion-col>Alamat Pengiriman :</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><p>{{product?.shipment.shipment_to}}</p></ion-col>
+      <ion-col><p>{{product?.shipment.shipment_address}}</p></ion-col>
+    </ion-row>
+    <hr>
+    <ion-row>
+      <ion-col>Nomor Resi:</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngIf="product?.shipment.resi_number != null">{{product?.shipment.resi_number}}</ion-col>
+      <ion-col *ngIf="product?.shipment.resi_number == null">belum dikirim</ion-col>
+    </ion-row>
+    <hr>
+    <ion-row>
+      <ion-col>
+        INVOICE {{product?.invoice_number}}
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div style="background-color: #f4f4f4" padding="5px 0 5px 0">
+    <ion-card *ngFor="let itemlist of product?.item">
+      <ion-card-header>
+        {{itemlist.name}}
+      </ion-card-header>
+
+      <ion-card-content>
+        <p item-start>Rp.{{itemlist.price | number}}</p>
+        <p item-end>jumlah barang : {{itemlist.qty}}</p>
+      </ion-card-content>
+
+    </ion-card>
+  </div>
+
+  <div>
+    <ion-list no-lines>
+      <ion-item>
+        <h2 item-start>Total Belanja</h2>
+        <p item-end>Rp.{{product?.price_detail.product_total | number}}</p>
+      </ion-item>
+      <ion-item>
+        <h2 item-start>Ongkos Kirim</h2>
+        <p item-end>Rp.{{product?.price_detail.shipment_price | number}}</p>
+      </ion-item>
+      <ion-item>
+        <h2 item-start>Nomor Unik</h2>
+        <p item-end>{{product?.price_detail.unique_number}}</p>
+      </ion-item>
+      <hr>
+      <ion-item>
+        <h2 item-start>Total Pembayaran</h2>
+        <p item-end>Rp.{{product?.price_detail.total | number}}</p>
+      </ion-item>
+    </ion-list>
+
+  </div>
 </ion-content>

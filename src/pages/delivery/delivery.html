@@ -24,10 +24,11 @@
     <ion-item>
       <ion-label>Jasa Pengiriman</ion-label>
       <ion-select (ionChange)="onChange($event)" okText="Pilih" cancelText="Batal">
-        <ion-option *ngFor="let costs of listcost"  value="{{costs.service}}">JNE {{costs.service}}</ion-option>
+        <ion-option *ngFor="let costs of listcost;let i = index"  value="{{costs}}">JNE {{costs.service}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
+
 
   
   <ion-item-divider></ion-item-divider>

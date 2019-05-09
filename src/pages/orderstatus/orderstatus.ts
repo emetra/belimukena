@@ -34,8 +34,9 @@ export class OrderstatusPage {
     this.getOrder();
   }
 
-  orderDetail(){
-    this.navCtrl.push(OrderdetailPage);
+  orderDetail(item){
+    let data = {product:item};
+    this.navCtrl.push(OrderdetailPage,data);
   }
   getOrder(){
     let loader = this.loadingCtrl.create({
