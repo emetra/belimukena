@@ -46,4 +46,114 @@ export class CheckoutServiceProvider {
         return res.json()
       });
   }
+
+  getBanks(data):Observable<any> {
+    let url = this.apiService.API_URL + '/payments/banks';
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+    });
+
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(url,options)
+      .map(res => {
+        return res.json()
+      });
+  }
+
+  updateRecipient(data):Observable<any> {
+    let url = this.apiService.API_URL + '/checkout/update-recipient';
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    let item = {
+      recipient_name: data.recipient_name,
+      recipient_phone: data.recipient_phone,
+      recipient_address: data.recipient_address,
+      recipient_postal_code: data.recipient_postal_code
+    };
+
+    return this.http.patch(url, item, options)
+      .map(res => {
+        return res.json();
+      },
+      err => {
+        return err;
+      });
+  }
+
+  updateShipment(data):Observable<any> {
+    let url = this.apiService.API_URL + '/checkout/update-shipment';
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    let item = {
+      shipment_service_id: data.shipment_service_id,
+      shipment_district_id: data.shipment_district_id,
+      shipment_city_id: data.shipment_city_id,
+      shipment_province_id: data.shipment_province_id
+    };
+
+    return this.http.patch(url, item, options)
+      .map(res => {
+        return res.json();
+      },
+        err => {
+          return err;
+      });
+  }
+
+  updatePaymentManual(data):Observable<any> {
+    let url = this.apiService.API_URL + '/checkout/update-payment-method';
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    let item = {
+      payment_bank_id: data.payment_bank_id,
+      payment_method: data.payment_method
+    };
+
+    return this.http.patch(url, item, options)
+      .map(res => {
+        return res.json();
+      },
+      err => {
+        return err;
+      });
+  }
+
+  confirmOrder(data):Observable<any> {
+    let url = this.apiService.API_URL + '/checkout/store';
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    let item = {
+      apiToken: data.apiToken
+    };
+
+    return this.http.patch(url, item, options)
+      .map(res => {
+          return res.json();
+        },
+        err => {
+          return err;
+        });
+  }
 }

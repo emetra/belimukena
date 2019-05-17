@@ -5,6 +5,9 @@
 </ion-header>
 
 <ion-content hide-tabs padding>
+
+  <ion-img src="assets/imgs/belimukena.png"style="width: 250px;height: 130px;display: block;margin: 0 auto;background-color: white"></ion-img>
+
   <div text-center padding>
     <img src="" width="65%" height="auto">
   </div>
@@ -18,12 +21,12 @@
   </ion-item>
 
   <div padding text-left>
-    <button ion-button small clear>Lupa Password?</button>
+    <button ion-button small clear (click)="resetPassword()">Lupa Password?</button>
   </div>
 
   <div text-center>
-    <button ion-button block (click)="doLogin()">Masuk</button>
-    <button ion-button outline block>Daftar Akun</button>
+    <button ion-button full round (click)="doLogin()">Masuk</button>
+    <button ion-button outline round (click)="register()">Daftar Akun</button>
   </div>
 </form>
 </ion-content>

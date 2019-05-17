@@ -6,13 +6,44 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>payment</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Payment</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content style="background-color: rgb(248, 247, 247)">
+    <ion-card>
+      <ion-card-content>
+        Total harga
+      </ion-card-content>
+    </ion-card>
+  <ion-label padding-left="">
+    <h4><b>Pilih Metode Pembayaran</b></h4>
+  </ion-label>
+  <ion-card (click)="manual()">
+    <button ion-item>
+      <ion-img item-start="" src="assets/icon/atm.png" style="width: 60px;height: 60px;background-color: white"></ion-img>
+      <ion-card-content>
+        Transfer Manual
+      </ion-card-content>
+    </button>
+  </ion-card>
+  <ion-card (click)="va()">
+    <button ion-item >
+      <ion-img item-start="" src="assets/icon/Bca-icon.png" style="width: 60px;height: 60px;background-color: white"></ion-img>
+      <ion-card-content>
+        BCA Virtual Account
+      </ion-card-content>
+    </button>
+  </ion-card>
+  <ion-card (click)="manual()">
+    <button disabled ion-item>
+      <ion-img item-start="" src="assets/icon/credit-card.png" style="width: 60px;height: 60px;background-color: white"></ion-img>
+      <ion-card-content>
+        Credit Card
+      </ion-card-content>
+    </button>
+  </ion-card>
 </ion-content>

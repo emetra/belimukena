@@ -13,7 +13,11 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content style="background-color: rgb(248, 247, 247)">
+  <ion-card>
+    <ion-card-content>
+
+
   <ion-item-divider color="light"><H4 style="font-size: 14px;">Nama Lengkap</H4></ion-item-divider>
   <ion-item style="padding-bottom: 10px;">
       <ion-input type="text" placeholder="Nama Lengkap" [(ngModel)]="recipient.name"></ion-input>
@@ -22,37 +26,19 @@
   <ion-item style="padding-bottom: 10px;">
       <ion-input type="tel" placeholder="Nomor Telepon" [(ngModel)]="recipient.phone"></ion-input>
   </ion-item>
-
+      <ion-item-divider color="light"><H4 style="font-size: 14px;">Kode Pos</H4></ion-item-divider>
+      <ion-item style="padding-bottom: 10px;">
+        <ion-input type="tel" placeholder="Kode Pos" style="height: 50px;" [(ngModel)]="recipient.postal_code"></ion-input>
+      </ion-item>
   <ion-item-divider color="light"><H4 style="font-size: 14px;">Alamat Lengkap</H4></ion-item-divider>
   <ion-item style="padding-bottom: 10px;">
-      <ion-textarea lineHeight='20' name="notes" placeholder="Alamat Lengkap" [(ngModel)]="recipient.address"></ion-textarea>
-  </ion-item>
-  <ion-item-divider color="light"><H4 style="font-size: 14px;">Provinsi</H4></ion-item-divider>
-  <ion-item style="padding-bottom: 10px;">
-    <ion-select [(ngModel)]="recipient.province_id" (ionChange)="getCity($event)" okText="Pilih" cancelText="Batal">
-        <ion-option *ngFor="let province of provinces" value="{{province.id}}">{{province.name}}</ion-option>
-    </ion-select>
-      <!-- <button item-end ion-button small icon-only clear ><ion-icon name="search"></ion-icon></button> -->
-  </ion-item>
-  <ion-item-divider color="light"><H4 style="font-size: 14px;">Kota</H4></ion-item-divider>
-  <ion-item style="padding-bottom: 10px;">
-    <ion-select [(ngModel)]="recipient.city_id" (ionChange)="getDistrict($event)" okText="Pilih" cancelText="Batal">
-        <ion-option *ngFor="let city of cities"  value="{{city.id}}">{{city.name}}</ion-option>
-    </ion-select>
-  </ion-item>
-  <ion-item-divider color="light"><H4 style="font-size: 14px;">Kecamatan</H4></ion-item-divider>
-  <ion-item style="padding-bottom: 10px;">
-    <ion-select [(ngModel)]="recipient.district_id" okText="Pilih" cancelText="Batal">
-        <ion-option *ngFor="let district of districts"  value="{{district.id}}">{{district.name}}</ion-option>
-    </ion-select>
-  </ion-item>
-  <ion-item-divider color="light"><H4 style="font-size: 14px;">Kode Pos</H4></ion-item-divider>
-  <ion-item style="padding-bottom: 10px;">
-      <ion-input type="tel" placeholder="Kode Pos" style="height: 50px;"></ion-input>
+      <ion-textarea [attr.rows]=4 lineHeight='40' name="notes" placeholder="Alamat Lengkap" [(ngModel)]="recipient.address"></ion-textarea>
   </ion-item>
 
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 <ion-footer no-border padding>
-    <button ion-button round block (click)="delivery()">Checkout</button>
+    <button ion-button round block (click)="delivery()">Pengiriman</button>
 </ion-footer>

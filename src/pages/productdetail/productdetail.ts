@@ -1,6 +1,6 @@
 import { CartServiceProvider } from './../../providers/cart-service/cart-service';
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import {NavController, NavParams, Events, ToastController} from 'ionic-angular';
 import { ProductServiceProvider } from '../../providers/product-service/product-service';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
@@ -20,7 +20,7 @@ export class ProductdetailPage {
   item: any;
   items: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public cartService : CartServiceProvider
-    ,public storage: Storage,public productService : ProductServiceProvider,public events : Events) {
+    ,public storage: Storage,public productService : ProductServiceProvider,public events : Events,public toastCtrl: ToastController) {
   }
   ionViewDidLoad() {
     this.item = this.navParams.get("items");
@@ -36,6 +36,7 @@ export class ProductdetailPage {
   addToCart(id){
     this.storage.get('user_id').then(userid => {
       if(userid == null) {
+        this.presentToast("Harap Login terlebih dahulu");
         this.navCtrl.push(LoginPage);
       }
       else{
@@ -46,10 +47,22 @@ export class ProductdetailPage {
           }; 
           this.cartService.addtoCart(data).subscribe(res => {
             console.log(res);
+            this.presentToast("Produk berhasil masuk keranjang");
             this.events.publish('cart:update',{});
+            this.events.publish('cart:added',{});
           });
         });
       }
     });
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000,
+      position: 'bot'
+    });
+
+    toast.present();
   }
 }

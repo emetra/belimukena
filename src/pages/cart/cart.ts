@@ -22,8 +22,6 @@ export class CartPage {
   items : any;
   person : any;
 
-
-
   constructor(public navCtrl: NavController,public storage: Storage,
     public zone: NgZone, public navParams: NavParams,
     public cartService: CartServiceProvider,public events: Events,
@@ -35,8 +33,9 @@ export class CartPage {
     });
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.getCart();
+    this.events.publish('cart:badge',{});
   }
 
   getCart(){
@@ -52,10 +51,15 @@ export class CartPage {
             Object.keys(result.items).forEach(function (key, index) {
               arr.push(result.items[key]);
               // key: the name of the object key
-              // index: the ordinal position of the key within the object 
+              // index: the ordinal position of the key within the object
+
             });
-          }
             this.items = arr;
+          }
+          else {
+            this.items = null;
+          }
+          console.log(this.items);
         });
     });
   }

@@ -1,13 +1,28 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar color="primary">
-      <ion-title>Mukena</ion-title>
+      <ion-title>Belimukena</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-list>
       <button ion-item menuClose="" *ngFor="let page of pages" (click)="open(page)">
         {{ page.title}}
+      </button>
+      <button *ngIf="statuslogin" ion-item="" menuClose="" (click)="openPage('orderstatus')">
+        List Order
+      </button>
+      <button *ngIf="statuslogin" ion-item="" menuClose="" (click)="openPage('profile')">
+        My Profile
+      </button>
+      <button *ngIf="statuslogin" ion-item="" menuClose="" (click)="logout()">
+        Logout
+      </button>
+      <button *ngIf="!statuslogin" ion-item="" menuClose="" (click)="openPage('login')">
+        Login
+      </button>
+      <button *ngIf="!statuslogin" ion-item="" menuClose="" (click)="openPage('register')">
+        Register
       </button>
       <button ion-item="" menuClose="">
         Close

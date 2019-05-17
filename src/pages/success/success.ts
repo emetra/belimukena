@@ -1,22 +1,20 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {HomePage} from "../home/home";
 
 @Component({
-  selector: 'page-orderdetail',
-  templateUrl: 'orderdetail.html',
+  selector: 'page-success',
+  templateUrl: 'success.html',
 })
-export class OrderdetailPage {
-
-  product : any;
+export class SuccessPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    this.product = this.navParams.get('product');
-
-    console.log(this.product);
   }
 
-
+  home(){
+    this.navCtrl.setRoot(HomePage);
+  }
 }

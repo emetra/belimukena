@@ -6,13 +6,91 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>orderconfirmation</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Konfirmasi Order</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>Nama : </ion-col>
+        <ion-col>Telp : </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><p>{{checkout.name}}</p></ion-col>
+        <ion-col><p>{{checkout.phone}}</p></ion-col>
+      </ion-row>
+      <hr>
+      <ion-row>
+        <ion-col>Kode Pos :</ion-col>
+        <ion-col>Alamat Pengiriman :</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><p>{{checkout.postal_code}}</p></ion-col>
+        <ion-col><p>{{checkout.address}}</p></ion-col>
+      </ion-row>
+      <hr>
+      <ion-row>
+        <ion-col>Jenis Pengiriman :</ion-col>
+        <ion-col>Etd :</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><p>{{checkout.courier}}-{{checkout.service_id}}</p></ion-col>
+        <ion-col><p>{{checkout.etd}}</p></ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 
+  <div style="background-color: #f4f4f4;border-radius: 15px!important;" padding="5px 0 5px 0">
+    <ion-card *ngFor="let itemlist of items">
+      <ion-card-content>
+        <ion-list>
+          <ion-item >
+            <ion-thumbnail item-start>
+              <img src="{{itemlist.img_url}}">
+            </ion-thumbnail>
+            <h2> {{itemlist.name}} </h2>
+            <div text-left class="price">
+              Rp {{itemlist.price | number}} x {{itemlist.qty}}
+            </div>
+            <div text-right class="subtotal">
+              Rp {{itemlist.subtotal | number}}
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+
+    </ion-card>
+  </div>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-list no-lines>
+        <ion-item>
+          <p item-start>Total Belanja</p>
+          <p item-end style="font-size: 18px;">Rp.{{checkout.subtotal | number}}</p>
+        </ion-item>
+        <ion-item>
+          <p item-start>Ongkos Kirim ({{checkout.charged_weight}} Kg)</p>
+          <p item-end style="font-size: 18px;">Rp.{{checkout.shipment_cost | number}}</p>
+        </ion-item>
+        <ion-item>
+          <p item-start>Nomor Unik</p>
+          <p item-end style="font-size: 18px;">{{checkout.transfer_code}}</p>
+        </ion-item>
+        <hr>
+        <ion-item>
+          <p item-start>Total Pembayaran</p>
+          <p item-end style="font-size: 18px;">Rp.{{checkout.grand_total | number}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<ion-footer no-border padding>
+  <button ion-button round block (click)="confirm()">Bayar</button>
+</ion-footer>

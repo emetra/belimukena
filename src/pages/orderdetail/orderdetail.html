@@ -6,10 +6,17 @@
 </ion-header>
 
 <ion-content padding>
-  <div>
+  <ion-card>
+    <ion-card-content>
     <ion-row>
-      <ion-col>Status : </ion-col>
-      <ion-col>{{product?.status}}</ion-col>
+      <ion-item-divider color="light">
+      <ion-col style="color: black">Status : </ion-col>
+        <ion-col *ngIf="(product?.status_id == 1)" style="color: #FF8247;">{{product?.status}}</ion-col>
+        <ion-col *ngIf="(product?.status_id == 2)" style="color: lightskyblue;">{{product?.status}}</ion-col>
+        <ion-col *ngIf="(product?.status_id == 3)" style="color: darkblue;">{{product?.status}}</ion-col>
+        <ion-col *ngIf="(product?.status_id == 4)" style="color: teal;">{{product?.status}}</ion-col>
+        <ion-col *ngIf="(product?.status_id == 5)" style="color: darkred;">{{product?.status}}</ion-col>
+      </ion-item-divider>
     </ion-row>
     <ion-row>
       <ion-col>Tanggal Pembelian : </ion-col>
@@ -42,9 +49,10 @@
         INVOICE {{product?.invoice_number}}
       </ion-col>
     </ion-row>
-  </div>
+    </ion-card-content>
+  </ion-card>
 
-  <div style="background-color: #f4f4f4" padding="5px 0 5px 0">
+  <div style="background-color: #f4f4f4;border-radius: 15px!important;" padding="5px 0 5px 0">
     <ion-card *ngFor="let itemlist of product?.item">
       <ion-card-header>
         {{itemlist.name}}
@@ -58,26 +66,27 @@
     </ion-card>
   </div>
 
-  <div>
-    <ion-list no-lines>
-      <ion-item>
-        <h2 item-start>Total Belanja</h2>
-        <p item-end>Rp.{{product?.price_detail.product_total | number}}</p>
-      </ion-item>
-      <ion-item>
-        <h2 item-start>Ongkos Kirim</h2>
-        <p item-end>Rp.{{product?.price_detail.shipment_price | number}}</p>
-      </ion-item>
-      <ion-item>
-        <h2 item-start>Nomor Unik</h2>
-        <p item-end>{{product?.price_detail.unique_number}}</p>
-      </ion-item>
-      <hr>
-      <ion-item>
-        <h2 item-start>Total Pembayaran</h2>
-        <p item-end>Rp.{{product?.price_detail.total | number}}</p>
-      </ion-item>
-    </ion-list>
-
-  </div>
+  <ion-card>
+    <ion-card-content>
+      <ion-list no-lines>
+        <ion-item>
+          <p item-start>Total Belanja</p>
+          <p item-end style="font-size: 18px;">Rp.{{product?.price_detail.product_total | number}}</p>
+        </ion-item>
+        <ion-item>
+          <p item-start>Ongkos Kirim</p>
+          <p item-end style="font-size: 18px;">Rp.{{product?.price_detail.shipment_price | number}}</p>
+        </ion-item>
+        <ion-item>
+          <p item-start>Nomor Unik</p>
+          <p item-end style="font-size: 18px;">{{product?.price_detail.unique_number}}</p>
+        </ion-item>
+        <hr>
+        <ion-item>
+          <p item-start>Total Pembayaran</p>
+          <p item-end style="font-size: 18px;">Rp.{{product?.price_detail.total | number}}</p>
+        </ion-item>
+      </ion-list>
+      </ion-card-content>
+  </ion-card>
 </ion-content>

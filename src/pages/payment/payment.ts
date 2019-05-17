@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ManualpaymentPage} from "../manualpayment/manualpayment";
+import {VapaymentPage} from "../vapayment/vapayment";
 
-/**
- * Generated class for the PaymentPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-payment',
   templateUrl: 'payment.html',
@@ -22,4 +16,10 @@ export class PaymentPage {
     console.log('ionViewDidLoad PaymentPage');
   }
 
+  manual(){
+    this.navCtrl.push(ManualpaymentPage)
+  }
+  va(){
+    this.navCtrl.push(VapaymentPage)
+  }
 }

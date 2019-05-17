@@ -2,21 +2,16 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
-  selector: 'page-orderdetail',
-  templateUrl: 'orderdetail.html',
+  selector: 'page-vapayment',
+  templateUrl: 'vapayment.html',
 })
-export class OrderdetailPage {
-
-  product : any;
+export class VapaymentPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    this.product = this.navParams.get('product');
-
-    console.log(this.product);
+    console.log('ionViewDidLoad VapaymentPage');
   }
-
 
 }

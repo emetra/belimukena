@@ -1,37 +1,30 @@
 import { CheckoutServiceProvider } from './../../providers/checkout-service/checkout-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {PaymentPage} from "../payment/payment";
+import {ProfileServiceProvider} from "../../providers/profile-service/profile-service";
 
-/**
- * Generated class for the DeliveryPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-delivery',
   templateUrl: 'delivery.html',
 })
 export class DeliveryPage {
-  courrier: any;
-  origin: any;
-  destination: any;
-
-  est: any = "";
-  listcost: any;
-  cost = 0;
+  dataCost: any;
+  province_id : any;
+  city_id : any;
   district_id : any;
-  constructor(public navCtrl: NavController,public checkoutService : CheckoutServiceProvider,
-              public navParams: NavParams,public storage: Storage) {
+  cities: any;
+  districts: any;
+  provinces: any;
+  service_id: any;
+
+  constructor(public navCtrl: NavController,public checkoutService : CheckoutServiceProvider,public  toastCtrl: ToastController,
+              public navParams: NavParams,public profileService : ProfileServiceProvider,public storage: Storage) {
   }
 
   ionViewDidLoad() {
     this.getCheckout();
-    console.log('ionViewDidLoad DeliveryPage');
   }
 
     getCheckout(){
@@ -42,34 +35,113 @@ export class DeliveryPage {
   
         this.checkoutService.getCheckout(data)
           .subscribe(result => {
+            this.province_id = result.shipment.province_id;
+            this.city_id = result.shipment.city_id;
             this.district_id = result.shipment.district_id;
-            this.getCost();
+            this.getProvince();
+            if(this.district_id !=null){
+              this.getCity(this.province_id);
+            }
+            if(this.city_id !=null) {
+              this.getDistrict(this.city_id);
+            }
+            if(this.district_id !=null){
+              this.getCost(this.district_id);
+            }
           });
       });
   }
 
-  onChange($event){
-    console.log($event.cost[0].value);
+  getProvince(){
+    this.storage.get('api_key').then(apiToken => {
+      let data = {
+        apiToken: apiToken
+      };
+      this.profileService.getProvince(data)
+        .subscribe(result => {
+          this.provinces = result.data;
+        });
+    });
   }
 
-  getCost(){
+  getCity(id){
     this.storage.get('api_key').then(apiToken => {
       let data = {
         apiToken: apiToken,
-        district_id: this.district_id
+        province_id: id
+      };
+      this.profileService.getCity(data)
+        .subscribe(result => {
+          this.cities = result.data;
+        });
+    });
+  }
+
+  getDistrict(id){
+    this.storage.get('api_key').then(apiToken => {
+      let data = {
+        apiToken: apiToken,
+        city_id: id
+      };
+      this.profileService.getDistrict(data)
+        .subscribe(result => {
+          this.districts = result.data;
+        });
+    });
+  }
+
+  changeProvince(id){
+    this.getCity(id);
+    this.district_id = null;
+    this.dataCost = null;
+  }
+
+  changeCity(id) {
+    this.getDistrict(id);
+    this.dataCost = null;
+  }
+
+  getCost(id){
+    this.storage.get('api_key').then(apiToken => {
+      let data = {
+        apiToken: apiToken,
+        district_id: id
       };
 
       this.checkoutService.getCost(data)
         .subscribe(result => {
-            this.origin = result.data.origin_details.city_name;
-            this.destination = result.data.destination_details.subdistrict_name;
-            this.listcost = result.data.results[0].costs;
-            console.log(result.data.results[0].costs);
+            this.dataCost = result.data.results[0].costs;
+            console.log(this.dataCost);
         });
     });
   }
   payment(){
-    this.navCtrl.push(PaymentPage);
+    this.storage.get('api_key').then(apiToken => {
+      let data = {
+        apiToken: apiToken,
+        shipment_service_id: this.service_id,
+        shipment_district_id: this.district_id,
+        shipment_city_id: this.city_id,
+        shipment_province_id: this.province_id
+      };
+      this.checkoutService.updateShipment(data)
+        .subscribe(result => {
+
+            this.navCtrl.push(PaymentPage);
+          },
+          err => {
+            this.presentToast("Tolong pilih jasa pengiriman");
+          });
+    });
   }
 
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
 }

@@ -16,7 +16,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {NavbarPage} from "../pages/navbar/navbar";
 import {CartPage} from "../pages/cart/cart";
-import {OtherPage} from "../pages/other/other";
 import {CategoryPage} from "../pages/category/category";
 import {ProductPage} from "../pages/product/product";
 import {ProductdetailPage} from "../pages/productdetail/productdetail";
@@ -36,6 +35,12 @@ import { OrderconfirmationPage } from '../pages/orderconfirmation/orderconfirmat
 import { SuperTabsModule } from 'ionic2-super-tabs';
 import {SwipeSegmentDirective} from "../directives/swipe-segment/swipe-segment";
 import {OrderdetailPage} from "../pages/orderdetail/orderdetail";
+import {PaymentPage} from "../pages/payment/payment";
+import {ManualpaymentPage} from "../pages/manualpayment/manualpayment";
+import {VapaymentPage} from "../pages/vapayment/vapayment";
+import {SuccessPage} from "../pages/success/success";
+import {RegisterPage} from "../pages/register/register";
+import {ResetpasswordPage} from "../pages/resetpassword/resetpassword";
 
 @NgModule({
   declarations: [
@@ -46,7 +51,6 @@ import {OrderdetailPage} from "../pages/orderdetail/orderdetail";
     TabsPage,
     NavbarPage,
     CartPage,
-    OtherPage,
     CategoryPage,
     ContactPage,
     ProductPage,
@@ -59,9 +63,15 @@ import {OrderdetailPage} from "../pages/orderdetail/orderdetail";
     DeliveryPage,
     CheckoutPage,
     ProfilePage,
+    RegisterPage,
     OrderconfirmationPage,
     SwipeSegmentDirective,
-    OrderdetailPage
+    OrderdetailPage,
+    PaymentPage,
+    ManualpaymentPage,
+    VapaymentPage,
+    SuccessPage,
+    ResetpasswordPage
   ],
   imports: [
     SuperTabsModule,
@@ -81,7 +91,6 @@ import {OrderdetailPage} from "../pages/orderdetail/orderdetail";
     TabsPage,
     NavbarPage,
     CartPage,
-    OtherPage,
     CategoryPage,
     ContactPage,
     ProductPage,
@@ -94,8 +103,14 @@ import {OrderdetailPage} from "../pages/orderdetail/orderdetail";
     DeliveryPage,
     CheckoutPage,
     ProfilePage,
+    RegisterPage,
     OrderconfirmationPage,
-    OrderdetailPage
+    OrderdetailPage,
+    PaymentPage,
+    ManualpaymentPage,
+    VapaymentPage,
+    SuccessPage,
+    ResetpasswordPage
   ],
   providers: [
     StatusBar,

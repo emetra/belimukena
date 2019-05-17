@@ -1,5 +1,10 @@
 // http://ionicframework.com/docs/theming/
-
+ion-card {
+  border-radius:15px !important;
+}
+ion-item-divider{
+  border-radius:15px !important;
+}
 
 // App Global Sass
 // --------------------------------------------------

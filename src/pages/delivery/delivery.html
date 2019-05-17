@@ -13,27 +13,55 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
-    <ion-label>Pengirim</ion-label>
-    <h2>{{origin}}</h2>
-    <ion-label>Tujuan</ion-label>
-    <h2>{{destination}}</h2>
-  </ion-list>
-  <ion-list>
-    <ion-item>
-      <ion-label>Jasa Pengiriman</ion-label>
-      <ion-select (ionChange)="onChange($event)" okText="Pilih" cancelText="Batal">
-        <ion-option *ngFor="let costs of listcost;let i = index"  value="{{costs}}">JNE {{costs.service}}</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+<ion-content style="background-color: rgb(248, 247, 247)">
+  <ion-card>
+    <ion-card-header>
+    </ion-card-header>
+
+    <ion-card-content>
+        <ion-item-divider color="light"><H4 style="font-size: 14px;">Provinsi</H4></ion-item-divider>
+          <ion-item style="padding-bottom: 10px;">
+          <ion-select [(ngModel)]="province_id" placeholder="Pilih Provinsi" (ionChange)="changeProvince($event)" okText="Pilih" cancelText="Batal">
+          <ion-option *ngFor="let province of provinces" value="{{province.id}}">{{province.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item-divider color="light"><H4 style="font-size: 14px;">Kota</H4></ion-item-divider>
+          <ion-item style="padding-bottom: 10px;">
+          <ion-select [(ngModel)]="city_id" placeholder="Pilih Kota" (ionChange)="changeCity($event)" okText="Pilih" cancelText="Batal">
+          <ion-option *ngFor="let city of cities"  value="{{city.id}}">{{city.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item-divider color="light"><H4 style="font-size: 14px;">Kecamatan</H4></ion-item-divider>
+          <ion-item style="padding-bottom: 10px;">
+          <ion-select [(ngModel)]="district_id" placeholder="Pilih Kecamatan" (ionChange)="getCost($event)" okText="Pilih" cancelText="Batal">
+          <ion-option *ngFor="let district of districts"  value="{{district.id}}">{{district.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Pilih Jasa Pengiriman
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list radio-group [(ngModel)]="service_id">
+        <ion-label *ngIf="!dataCost" text-center>Pilih Kecamatan terlebih dahulu</ion-label>
+        <ion-item  *ngFor="let datac of dataCost"  text-wrap>
+          <ion-label><b>JNE {{datac.service}}</b></ion-label>
+          <ion-label>Rp.{{datac.cost[0].value | number}},-</ion-label>
+          <ion-label>{{datac.cost[0].etd}} hari</ion-label>
+          <ion-radio item-end value="{{datac.service}}"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
 
 
-  
-  <ion-item-divider></ion-item-divider>
-  <ion-label>Estimasi : {{ est }}</ion-label>
-  <h3 padding-left padding-right text-center> Harga : Rp {{ cost | number}},- </h3>
+  <!--<h3 padding-left padding-right text-center> Harga : Rp {{ cost | number}},- </h3>-->
 </ion-content>
 
 <ion-footer no-border padding>

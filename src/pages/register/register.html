@@ -6,13 +6,71 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>register</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Daftar</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-item no-lines>
+    <ion-label stacked>Nama Lengkap</ion-label>
+    <ion-input type="text" style="border-bottom: 1px solid #ccc" name="name" [(ngModel)]="user.name"></ion-input>
+  </ion-item>
 
+  <ion-item no-lines>
+    <ion-label stacked>Nomor Handphone</ion-label>
+    <ion-input type="tel" style="border-bottom: 1px solid #ccc" name="phone" [(ngModel)]="user.phone"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label stacked>Kode Pos</ion-label>
+    <ion-input type="tel" style="border-bottom: 1px solid #ccc" name="postalcode" [(ngModel)]="user.postal_code"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label stacked>Alamat</ion-label>
+    <ion-textarea style="border-bottom: 1px solid #ccc" rows="2" name="address" [(ngModel)]="user.address" autosize></ion-textarea>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label stacked>Provinsi</ion-label>
+    <ion-select style="border-bottom: 1px solid #ccc" [(ngModel)]="user.province_id" placeholder="Pilih Provinsi" (ionChange)="changeProvince($event)" okText="Pilih" cancelText="Batal">
+      <ion-option *ngFor="let province of provinces" value="{{province.id}}">{{province.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label stacked>Kota</ion-label>
+    <ion-select style="border-bottom: 1px solid #ccc" [(ngModel)]="user.city_id" placeholder="Pilih Kota" (ionChange)="changeCity($event)" okText="Pilih" cancelText="Batal">
+      <ion-option *ngFor="let city of cities"  value="{{city.id}}">{{city.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label stacked>Kecamatan</ion-label>
+    <ion-select style="border-bottom: 1px solid #ccc" [(ngModel)]="user.district_id" placeholder="Pilih Kecamatan" okText="Pilih" cancelText="Batal">
+      <ion-option *ngFor="let district of districts"  value="{{district.id}}">{{district.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label stacked>Email</ion-label>
+    <ion-input type="email" style="border-bottom: 1px solid #ccc" name="email" [(ngModel)]="user.email"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+  <ion-label stacked>Masukkan Kata Sandi</ion-label>
+  <ion-input type="password" style="border-bottom: 1px solid #ccc" name="password" [(ngModel)]="user.password"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label stacked>Masukkan Ulang Kata Sandi</ion-label>
+    <ion-input type="password"  style="border-bottom: 1px solid #ccc" name="password_confirmation" [(ngModel)]="user.password_confirmation"></ion-input>
+  </ion-item>
+
+  <button ion-button round block color="primary" (click)='register()'>
+    Daftar
+  </button>
 </ion-content>

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController, NavParams, LoadingController } from 'ionic-angular';
+import {AlertController, NavController, NavParams, LoadingController, Events} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { TabsPage } from '../tabs/tabs';
+import {RegisterPage} from "../register/register";
+import {ResetpasswordPage} from "../resetpassword/resetpassword";
 
 /**
  * Generated class for the LoginPage page.
@@ -19,9 +21,9 @@ export class LoginPage {
   login = {
     email : "",
     password : ""
-  }
+  };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams,public events: Events,
     public  alertCtrl: AlertController,public storage: Storage,public loadingCtrl: LoadingController
   ,public loginService: AuthServiceProvider) {
   }
@@ -52,11 +54,18 @@ export class LoginPage {
         this.storage.set('api_key',result.api_token);
         this.storage.set('email', result.data.email);
         this.storage.set('role', result.data.role);
+        this.events.publish('login',{});
         this.navCtrl.setRoot(TabsPage);
    }, err => {
      loader.dismiss();
-     this.presentAlert(err);
+     this.presentAlert("maaf email atau password salah");
    });
+  }
+  resetPassword(){
+    this.navCtrl.push(ResetpasswordPage);
+  }
+  register(){
+    this.navCtrl.push(RegisterPage);
   }
 
   presentAlert(message) {
