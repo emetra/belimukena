@@ -4,31 +4,32 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar color="primary">
-    <ion-title>Product Detail</ion-title>
+<ion-header no-border>
+  <ion-navbar color="primary" transparent style="background: linear-gradient(0deg, hsla(0, 0%, 100%, 0) 0%, rgba(183, 179, 179, 0.45) 100%) !important;">
+    <ion-buttons end>
+      <button ion-button icon-only style="color: black;padding-right: 20px" (click)="gotoCart()">
+        <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-  <ion-card>
+<ion-content fullscreen style="padding-top: 0px;">
+  <img src="{{items?.images}}">
 
     <ion-item>
       <h2 style="color:mediumvioletred;font-size:20px">{{items?.name}}</h2>
-      <p>Rp {{items?.price}}</p>
+      <h2 style="color: orangered">Rp {{items?.price}}</h2>
     </ion-item>
 
-    <img src="{{items?.images}}">
+    <ion-card>
+      <ion-card-header><h2 style="font-weight: bold">Deskripsi Barang :</h2></ion-card-header>
+      <ion-card-content>
+        <p [innerHTML]="items?.description"></p>
+      </ion-card-content>
+    </ion-card>
 
-    <ion-card-content>
-      <p [innerHTML]="items?.description"></p>
-    </ion-card-content>
 
-
-  </ion-card>
 </ion-content>
 
 <ion-footer no-border text-center padding>

@@ -4,6 +4,7 @@ import {NavController, NavParams, Events, ToastController} from 'ionic-angular';
 import { ProductServiceProvider } from '../../providers/product-service/product-service';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
+import {CartPage} from "../cart/cart";
 
 /**
  * Generated class for the ProductdetailPage page.
@@ -54,6 +55,9 @@ export class ProductdetailPage {
         });
       }
     });
+  }
+  gotoCart(){
+    this.navCtrl.push(CartPage);
   }
 
   presentToast(message) {
