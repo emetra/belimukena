@@ -3,6 +3,7 @@ import { NavController, NavParams, ToastController} from 'ionic-angular';
 import {CheckoutServiceProvider} from "../../providers/checkout-service/checkout-service";
 import { Storage } from '@ionic/storage';
 import {OrderconfirmationPage} from "../orderconfirmation/orderconfirmation";
+import {CartServiceProvider} from "../../providers/cart-service/cart-service";
 
 @Component({
   selector: 'page-manualpayment',
@@ -11,13 +12,27 @@ import {OrderconfirmationPage} from "../orderconfirmation/orderconfirmation";
 export class ManualpaymentPage {
   banks:any;
   bank_id:any;
-
-  constructor(public navCtrl: NavController,public checkoutService: CheckoutServiceProvider, public navParams: NavParams,
+  total: any;
+  constructor(public navCtrl: NavController,public  cartService: CartServiceProvider,public checkoutService: CheckoutServiceProvider, public navParams: NavParams,
               public storage: Storage,public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
       this.getBank();
+      this.getCart();
+  }
+
+  getCart(){
+    this.storage.get('api_key').then(apiToken => {
+      let data = {
+        apiToken: apiToken
+      };
+
+      this.cartService.getCarts(data)
+        .subscribe(result => {
+          this.total = result.total;
+        });
+    });
   }
 
   getBank(){

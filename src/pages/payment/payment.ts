@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {ManualpaymentPage} from "../manualpayment/manualpayment";
 import {VapaymentPage} from "../vapayment/vapayment";
+import {CartServiceProvider} from "../../providers/cart-service/cart-service";
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-payment',
@@ -9,11 +11,28 @@ import {VapaymentPage} from "../vapayment/vapayment";
 })
 export class PaymentPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  total: any;
+
+  constructor(public navCtrl: NavController,public cartService: CartServiceProvider,public storage: Storage, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
+    this.getCart();
     console.log('ionViewDidLoad PaymentPage');
+  }
+
+
+  getCart(){
+    this.storage.get('api_key').then(apiToken => {
+      let data = {
+        apiToken: apiToken
+      };
+
+      this.cartService.getCarts(data)
+        .subscribe(result => {
+          this.total = result.total;
+        });
+    });
   }
 
   manual(){

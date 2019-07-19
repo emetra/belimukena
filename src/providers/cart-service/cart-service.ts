@@ -61,7 +61,7 @@ export class CartServiceProvider {
     let options = new RequestOptions({ headers: headers });
     
     let item = {
-      item_index: data.item_index,
+      product_id: data.product_id,
       qty: data.qty
     };
 

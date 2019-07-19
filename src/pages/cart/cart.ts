@@ -64,11 +64,11 @@ export class CartPage {
     });
   }
 
-  editCart(index,qty){
+  editCart(item,qty){
     this.storage.get('api_key').then(apiToken => {
       let data = {
         apiToken: apiToken,
-        item_index: index,
+        product_id: item,
         qty: qty
       };
 
