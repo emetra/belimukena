@@ -90,3 +90,7 @@
       </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ion-footer no-border padding>
+  <button  *ngIf="(product?.status_id == 1)" (click)="confirmationPayment()" ion-button round block>Konfirmasi Bayar</button>
+</ion-footer>

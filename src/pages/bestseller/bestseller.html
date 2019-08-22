@@ -32,7 +32,7 @@
           <ion-col col-4  (click)="doDetailProducts(item)"><p>{{item.price}}</p></ion-col>
           <ion-col col-4  (click)="doDetailProducts(item)"></ion-col>
           <ion-col col-4>
-            <button ion-button small (click)="doDetailProducts(item)">Buy</button>
+            <button ion-button small (click)="addToCart(item.id)">Buy</button>
           </ion-col>
         </ion-row>
       </ion-item>

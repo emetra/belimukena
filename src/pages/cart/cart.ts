@@ -1,4 +1,4 @@
-import { AddressPage } from './../address/address';
+  import { AddressPage } from './../address/address';
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { CartServiceProvider } from '../../providers/cart-service/cart-service';

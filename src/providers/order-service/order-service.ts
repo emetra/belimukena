@@ -31,4 +31,28 @@ export class OrderServiceProvider {
         return res.json()
       });
   }
+
+  paymentConfirmation(data):Observable<any> {
+    let url = this.apiService.API_URL + '/my-transactions/transactions/'+data.invoice_number+'/confirm-payment';
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    let item = {
+      bank_id: "",
+      cust_bank: "bca",
+      cust_bank_name: "belimukenaCustomer",
+      payment_amount: "",
+      payment_date: ""
+    };
+
+    return this.http.post(url, item, options)
+      .map(res => {
+        return res.json();
+      });
+  }
+
 }
