@@ -1,4 +1,11 @@
 // http://ionicframework.com/docs/theming/
+ion-avatar,
+ion-avatar > img{
+  border-radius:0!important;
+  width: 60px!important;
+  height: 60px!important;
+}
+
 ion-card {
   border-radius:15px !important;
 }

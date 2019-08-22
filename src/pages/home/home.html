@@ -29,22 +29,23 @@
 
   <ion-grid text-center no-padding>
 
-    <ion-card *ngFor="let item of product; let i = index;" (click)="doDetailProducts(item)">
-        <ion-col col-4>
-          <img src="{{item.images}}">
-        </ion-col>
+    <ion-card *ngFor="let item of product; let i = index;">
 
-        <ion-col col-8>
-          <ion-row>
-            <p>{{item.name}}</p>
-          </ion-row>
-          <ion-row>
-            <p>{{item.name}}</p>
-          </ion-row>
-          <ion-row>
-            <p>{{item.name}}</p>
-          </ion-row>
-        </ion-col>
+      <ion-item>
+        <ion-avatar item-start (click)="doDetailProducts(item)">
+          <img src="{{item.images}}">
+        </ion-avatar>
+        <ion-row  (click)="doDetailProducts(item)">
+          <h2>{{item.name}}</h2>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4  (click)="doDetailProducts(item)"><p>{{item.price}}</p></ion-col>
+          <ion-col col-4  (click)="doDetailProducts(item)"></ion-col>
+          <ion-col col-4>
+            <button ion-button small (click)="doDetailProducts(item)">Buy</button>
+          </ion-col>
+        </ion-row>
+      </ion-item>
     </ion-card>
 
   </ion-grid>
