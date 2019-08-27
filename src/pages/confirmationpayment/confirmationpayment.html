@@ -15,27 +15,27 @@
 
   <ion-item>
     <ion-label>Atas Nama</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="item.name"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Nomor Rekening</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="item.bankid"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Nama Bank</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="item.bankname"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Total Pembayaran</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="item.amount"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Tanggal Pembayaran</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="item.date"></ion-datetime>
   </ion-item>
 
 </ion-list>

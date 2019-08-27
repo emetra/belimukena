@@ -41,7 +41,7 @@ import {VapaymentPage} from "../pages/vapayment/vapayment";
 import {SuccessPage} from "../pages/success/success";
 import {RegisterPage} from "../pages/register/register";
 import {ResetpasswordPage} from "../pages/resetpassword/resetpassword";
-import {ConfirmationpaymentPageModule} from "../pages/confirmationpayment/confirmationpayment.module";
+import {ConfirmationpaymentPage} from "../pages/confirmationpayment/confirmationpayment";
 
 @NgModule({
   declarations: [
@@ -73,7 +73,7 @@ import {ConfirmationpaymentPageModule} from "../pages/confirmationpayment/confir
     VapaymentPage,
     SuccessPage,
     ResetpasswordPage,
-    ConfirmationpaymentPageModule
+    ConfirmationpaymentPage
   ],
   imports: [
     SuperTabsModule,
@@ -113,7 +113,7 @@ import {ConfirmationpaymentPageModule} from "../pages/confirmationpayment/confir
     VapaymentPage,
     SuccessPage,
     ResetpasswordPage,
-    ConfirmationpaymentPageModule
+    ConfirmationpaymentPage
   ],
   providers: [
     StatusBar,

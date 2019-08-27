@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {OrderServiceProvider} from "../../providers/order-service/order-service";
 import { Storage } from '@ionic/storage';
+import {ConfirmationpaymentPage} from "../confirmationpayment/confirmationpayment";
 
 @Component({
   selector: 'page-orderdetail',
@@ -33,22 +34,8 @@ export class OrderdetailPage {
   }
 
   confirmationPayment() {
-    console.log('test');
-      this.storage.get('api_key').then(apiToken => {
-        let data = {
-          apiToken: apiToken,
-          invoice_number: this.product.invoice_number,
-          bank_id: "1",
-          cust_bank: "test",
-          cust_bank_name:"test",
-          payment_amount: "1000",
-          payment_date: this.today,
-        };
-
-        this.orderService.paymentConfirmation(data)
-          .subscribe(result => {
-            this.presentToast("Konfirmasi Sukses");
-          });
+      this.navCtrl.push(ConfirmationpaymentPage,{
+        invoice_id:this.product.invoice_number
       });
   }
 
