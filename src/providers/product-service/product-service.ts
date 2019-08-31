@@ -28,6 +28,15 @@ export class ProductServiceProvider {
       });
   }
 
+  getSlider():Observable<any> {
+    let url = this.apiService.API_URL + '/sliders';
+
+    return this.http.get(url)
+      .map(res => {
+        return res.json()
+      });
+  }
+
   getProducts(page,query):Observable<any> {
     let url = this.apiService.API_URL + '/products?page='+page+'&query='+query;
 

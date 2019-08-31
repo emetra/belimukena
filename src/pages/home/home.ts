@@ -20,6 +20,7 @@ export class HomePage {
   totalData = 0;
   totalPage = 0;
   keyword: any = "";
+  slider = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public events: Events,public toastCtrl: ToastController,public cartService: CartServiceProvider
     ,public storage: Storage, public productService : ProductServiceProvider) {
@@ -28,6 +29,14 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
+    this.getSlider();
+  }
+
+  getSlider(){
+    this.productService.getSlider().subscribe(
+      res => {
+        this.slider = res.data;
+      })
   }
 
   doInfinite(infiniteScroll) {

@@ -3,28 +3,26 @@
       <button ion-button large clear menuToggle icon-only >
         <ion-icon name='menu'></ion-icon>
       </button>
-          <ion-searchbar [(ngModel)]="keyword" (ionInput)="getProduct()"></ion-searchbar>
+          <!--<ion-searchbar [(ngModel)]="keyword" (ionInput)="getProduct()"></ion-searchbar>-->
   </ion-navbar>
+  <ion-toolbar color="primary">
+    <!--<button ion-button large clear menuToggle icon-only >-->
+      <!--<ion-icon name='menu'></ion-icon>-->
+    <!--</button>-->
+    <ion-searchbar [(ngModel)]="keyword" (ionInput)="getProduct()"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 
 
 <ion-content>
-  <!-- <ion-slides pager>
-
-    <ion-slide style="background-color: green">
-      <h2>Slide 1</h2>
+  <ion-slides pager>
+    <ion-slide *ngFor="let slide of slider;" style="background-color: green">
+      <!--<h2>Slide 1</h2>-->
+      <img src="{{slide}}" class="slide-image"/>
     </ion-slide>
 
-    <ion-slide style="background-color: blue">
-      <h2>Slide 2</h2>
-    </ion-slide>
-
-    <ion-slide style="background-color: red">
-      <h2>Slide 3</h2>
-    </ion-slide>
-
-  </ion-slides> -->
+  </ion-slides>
 
 
   <ion-grid text-center no-padding>
@@ -42,7 +40,7 @@
           <ion-col col-4  (click)="doDetailProducts(item)"><p>{{item.price}}</p></ion-col>
           <ion-col col-4  (click)="doDetailProducts(item)"></ion-col>
           <ion-col col-4>
-            <button ion-button small (click)="addToCart(item.id)">Buy</button>
+            <button ion-button small (click)="addToCart(item.id)">Beli</button>
           </ion-col>
         </ion-row>
       </ion-item>
