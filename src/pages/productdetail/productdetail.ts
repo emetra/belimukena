@@ -20,17 +20,27 @@ import {CartPage} from "../cart/cart";
 export class ProductdetailPage {
   item: any;
   items: any;
+  login:boolean = false;
+  apiToken : any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public cartService : CartServiceProvider
     ,public storage: Storage,public productService : ProductServiceProvider,public events : Events,public toastCtrl: ToastController) {
+    this.storage.get('api_key').then(apiToken => {
+      this.item = this.navParams.get("items");
+      if(apiToken != null) {
+        this.login = true;
+      }
+      else{
+        this.login = false;
+      }
+      this.apiToken = apiToken;
+      this.getProductDetail();
+    });
   }
   ionViewDidLoad() {
-    this.item = this.navParams.get("items");
-    console.log(this.item);
-    this.getProductDetail();
   }
 
   getProductDetail(){
-    this.productService.getProductDetail(this.item).subscribe(res => {
+    this.productService.getProductDetail(this.login,this.item,this.apiToken).subscribe(res => {
       this.items = res.data;
     })
   }
@@ -41,10 +51,9 @@ export class ProductdetailPage {
         this.navCtrl.push(LoginPage);
       }
       else{
-        this.storage.get('api_key').then(apiToken => {
           let data = {
             product_id: id,
-            apiToken : apiToken
+            apiToken : this.apiToken
           }; 
           this.cartService.addtoCart(data).subscribe(res => {
             console.log(res);
@@ -52,7 +61,6 @@ export class ProductdetailPage {
             this.events.publish('cart:update',{});
             this.events.publish('cart:added',{});
           });
-        });
       }
     });
   }

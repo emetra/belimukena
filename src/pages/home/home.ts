@@ -20,12 +20,22 @@ export class HomePage {
   totalData = 0;
   totalPage = 0;
   keyword: any = "";
+  login: boolean = false;
   slider = [];
+  apiToken: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public events: Events,public toastCtrl: ToastController,public cartService: CartServiceProvider
     ,public storage: Storage, public productService : ProductServiceProvider) {
-      this.getProduct();
-
+      this.storage.get('api_key').then(apiToken => {
+          if(apiToken != null) {
+            this.login = true;
+          }
+          else{
+            this.login = false;
+          }
+      this.apiToken = apiToken;
+          this.getProduct();
+    });
   }
 
   ionViewDidLoad(){
@@ -42,7 +52,7 @@ export class HomePage {
   doInfinite(infiniteScroll) {
     this.page = this.page+1;
     setTimeout(() => {
-      this.productService.getProducts(this.page,this.keyword)
+      this.productService.getProducts(this.login,this.page,this.keyword,this.apiToken)
          .subscribe(
            res => {
              console.log(res.data);
@@ -61,24 +71,21 @@ export class HomePage {
   }
 
   addToCart(id){
-    console.log(id);
     this.storage.get('user_id').then(userid => {
       if(userid == null) {
         this.presentToast("Harap login terlebih dahulu");
         this.navCtrl.push(LoginPage);
       }
       else{
-        this.storage.get('api_key').then(apiToken => {
           let data = {
             product_id: id,
-            apiToken : apiToken
+            apiToken : this.apiToken
           };
           this.cartService.addtoCart(data).subscribe(res => {
             this.presentToast("Produk berhasil masuk keranjang");
             this.events.publish('cart:update',{});
             this.events.publish('cart:added',{});
           });
-        });
       }
     });
   }
@@ -94,7 +101,7 @@ export class HomePage {
   }
 
   getProduct(){
-    this.productService.getProducts(this.page,this.keyword).subscribe(
+    this.productService.getProducts(this.login,this.page,this.keyword,this.apiToken).subscribe(
       res => {
         console.log(res.data);
         this.product = res.data;

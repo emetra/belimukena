@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { ApiServiceProvider } from '../api-service/api-service';
@@ -19,10 +19,24 @@ export class ProductServiceProvider {
     
   }
 
-  getCategories():Observable<any> {
-    let url = this.apiService.API_URL + '/categories';
+  getCategories(login,apiToken):Observable<any> {
+    let link = ' ';
+    if(login == true){
+      link = '/categories/';
+    }
+    else{
+      link = '/guest-categories/';
+    }
 
-    return this.http.get(url)
+    let url = this.apiService.API_URL + link;
+
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(url,options)
       .map(res => {
         return res.json()
       });
@@ -37,15 +51,33 @@ export class ProductServiceProvider {
       });
   }
 
-  getProducts(page,query):Observable<any> {
-    let url = this.apiService.API_URL + '/products?page='+page+'&query='+query;
+  getProducts(login,page,query,apiToken):Observable<any> {
+    let link = ' ';
+    if(login == true){
+      link = '/products';
+    }
+    else{
+      link = '/guest-products';
+    }
+    let url = this.apiService.API_URL + link +'?page='+page+'&query='+query;
 
-    return this.http.get(url)
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(url,options)
       .map(res => {
         let body = res.json();
         return body || { };
-      })
-      .catch(this.handleError);
+      });
+    // return this.http.get(url)
+    //   .map(res => {
+    //     let body = res.json();
+    //     return body || { };
+    //   })
+    //   .catch(this.handleError);
   }
 
   private handleError (error: Response | any) {
@@ -54,19 +86,46 @@ export class ProductServiceProvider {
     return Observable.throw(errMsg);
   }
 
-  getproductsByCategories(data,page):Observable<any> {
-    let url = this.apiService.API_URL + '/categories/'+data.slug+'/products?page='+page;
+  getproductsByCategories(login,data,page,apiToken):Observable<any> {
+    let link = ' ';
+    if(login == true){
+      link = '/categories/';
+    }
+    else{
+      link = '/guest-categories/';
+    }
+    let url = this.apiService.API_URL + link +data.slug+'/products?page='+page;
 
-    return this.http.get(url)
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(url,options)
       .map(res => {
         return res.json()
       });
   }
 
-  getProductDetail(data):Observable<any> {
-    let url = this.apiService.API_URL + '/products/'+data.id;
+  getProductDetail(login,data,apiToken):Observable<any> {
+    let link = ' ';
+    if(login == true){
+      link = '/products/';
+    }
+    else{
+      link = '/guest-products/';
+    }
 
-    return this.http.get(url)
+    let url = this.apiService.API_URL + link +data.id;
+
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(url,options)
       .map(res => {
         return res.json()
       });

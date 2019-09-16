@@ -12,6 +12,7 @@ export class OrderconfirmationPage {
 
   checkout={};
   items: any;
+  invoice_number: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public storage: Storage,public checkoutService: CheckoutServiceProvider) {
   }
@@ -56,7 +57,10 @@ export class OrderconfirmationPage {
       };
       this.checkoutService.confirmOrder(data)
         .subscribe(result => {
-            this.navCtrl.push(SuccessPage);
+            this.invoice_number = result.data.invoice_number;
+            this.navCtrl.push(SuccessPage,{
+              invoice_id:this.invoice_number
+            });
           },
           err => {
           });

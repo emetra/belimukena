@@ -42,6 +42,7 @@ import {SuccessPage} from "../pages/success/success";
 import {RegisterPage} from "../pages/register/register";
 import {ResetpasswordPage} from "../pages/resetpassword/resetpassword";
 import {ConfirmationpaymentPage} from "../pages/confirmationpayment/confirmationpayment";
+import {Clipboard} from "@ionic-native/clipboard";
 
 @NgModule({
   declarations: [
@@ -125,7 +126,8 @@ import {ConfirmationpaymentPage} from "../pages/confirmationpayment/confirmation
     CartServiceProvider,
     CheckoutServiceProvider,
     ProfileServiceProvider,
-    OrderServiceProvider
+    OrderServiceProvider,
+    Clipboard
   ]
 })
 export class AppModule {}

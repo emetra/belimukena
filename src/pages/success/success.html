@@ -9,8 +9,29 @@
 
   <ion-img justify-content-center="" src="assets/imgs/success.png" style="width: 250px;height: 250px;display: block;margin: 0 auto;background-color: #faafc8"></ion-img>
 
-  <ion-label text-center="" style="font-size: 20px" color="light">Selamat Transaksi Anda Telah Sukses</ion-label>
-  <ion-label text-center="" style="font-size: 20px" color="light">Segera lakukan pembayaran 1x24 Jam</ion-label>
+  <ion-label text-center="" style="font-size: 18px" color="light">Selamat Transaksi Anda Telah Sukses</ion-label>
+  <ion-label text-center="" style="font-size: 18px" color="light">Segera lakukan pembayaran 1x24 Jam</ion-label>
+
+  <ion-card *ngIf="payment.bank_id > 0" text-center="">
+    <p>Transfer ke : </p>
+    <p style="font-size: 20px;color: #022c68;">{{banks.name}} - {{banks.account_number}}</p>
+    <a (click)="copy(banks.account_number)">Salin Nomor Rekening</a>
+  </ion-card>
+
+  <ion-card *ngIf="payment.bank_id === 0" text-center="">
+    <p>Transfer ke nomor Virtual Account BCA : </p>
+    <p style="font-size: 20px;color: #022c68;">{{payment_gateway.va_numbers[0].va_number}}</p>
+    <a (click)="copy(payment_gateway.va_numbers[0].va_number)">Salin Nomor Va</a>
+  </ion-card>
+
+  <ion-card text-center="">
+    <p>Jumlah yang Harus Dibayar : </p>
+    <p style="font-size: 20px;color: #022c68;">Rp.{{payment.payment_details?.grand_total | number}}</p>
+  </ion-card>
+
+  <ion-card *ngIf="payment.bank_id > 0" text-center="">
+    <p style="font-size: 20px;color: #022c68;">Lakukan konfirmasi pembayaran di menu List Order.</p>
+  </ion-card>
 
 </ion-content>
 

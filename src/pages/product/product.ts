@@ -28,11 +28,21 @@ export class ProductPage {
   data = [];
   product = [];
   errorMessage: string;
+  login:boolean = false;
+  apiToken : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public toastCtrl : ToastController,
     public productService: ProductServiceProvider,public storage: Storage,
     public cartService: CartServiceProvider,public events : Events) {
-      
+    this.storage.get('api_key').then(apiToken => {
+      if(apiToken != null) {
+        this.login = true;
+      }
+      else{
+        this.login = false;
+      }
+      this.apiToken = apiToken;
+    });
     this.item = this.navParams.get("items");
     this.getProduct();
   }
@@ -44,7 +54,7 @@ export class ProductPage {
   doInfinite(infiniteScroll) {
     this.page = this.page+1;
     setTimeout(() => {
-      this.productService.getproductsByCategories(this.item,this.page)
+      this.productService.getproductsByCategories(this.login,this.item,this.page,this.apiToken)
          .subscribe(
            res => {
              console.log(res.data);
@@ -65,7 +75,7 @@ export class ProductPage {
   getProduct() {
     if(this.item == null)
     {
-      this.productService.getProducts(this.page,'').subscribe(res => {
+      this.productService.getProducts(this.login,this.page,'',this.apiToken).subscribe(res => {
         this.product = res.data;
         this.perPage = res.meta.per_page;
         this.totalData = res.meta.total;
@@ -73,7 +83,7 @@ export class ProductPage {
       })
     }
     else{
-      this.productService.getproductsByCategories(this.item,this.page).subscribe(res => {
+      this.productService.getproductsByCategories(this.login,this.item,this.page,this.apiToken).subscribe(res => {
         this.product = res.data;
         this.perPage = res.meta.per_page;
         this.totalData = res.meta.total;

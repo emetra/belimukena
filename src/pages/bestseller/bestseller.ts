@@ -18,9 +18,20 @@ import {CartServiceProvider} from "../../providers/cart-service/cart-service";
   templateUrl: 'bestseller.html',
 })
 export class BestsellerPage {
+  apiToken:any;
+  login: boolean = false;
 
   constructor(public navCtrl: NavController,public storage: Storage,public toastCtrl: ToastController,public cartService: CartServiceProvider,public events: Events,
               public navParams: NavParams,public productService: ProductServiceProvider) {
+    this.storage.get('api_key').then(apiToken => {
+      if(apiToken != null) {
+        this.login = true;
+      }
+      else{
+        this.login = false;
+      }
+      this.apiToken = apiToken;
+    });
   }
   items : any;
   ionViewDidLoad() {
@@ -32,7 +43,7 @@ export class BestsellerPage {
     let data = {
       slug : "best-seller"
     };
-    this.productService.getproductsByCategories(data,1).subscribe(res => {
+    this.productService.getproductsByCategories(this.login,data,1,this.apiToken).subscribe(res => {
       this.items = res.data;
       console.log(res);
     })
@@ -57,17 +68,15 @@ export class BestsellerPage {
         this.navCtrl.push(LoginPage);
       }
       else{
-        this.storage.get('api_key').then(apiToken => {
           let data = {
             product_id: id,
-            apiToken : apiToken
+            apiToken : this.login
           };
           this.cartService.addtoCart(data).subscribe(res => {
             this.presentToast("Produk berhasil masuk keranjang");
             this.events.publish('cart:update',{});
             this.events.publish('cart:added',{});
           });
-        });
       }
     });
   }

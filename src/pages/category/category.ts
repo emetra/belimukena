@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import {ProductPage} from "../product/product";
 import { ProductServiceProvider } from '../../providers/product-service/product-service';
 import { SubcategoryPage } from '../subcategory/subcategory';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the CategoryPage page.
@@ -15,20 +16,29 @@ import { SubcategoryPage } from '../subcategory/subcategory';
   templateUrl: 'category.html',
 })
 export class CategoryPage {
-
   items: any;
+  apiToken:any;
+  login: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public categoryService: ProductServiceProvider) {
+  constructor(public navCtrl: NavController,public storage: Storage, public navParams: NavParams,public categoryService: ProductServiceProvider) {
+    this.storage.get('api_key').then(apiToken => {
+      if(apiToken != null) {
+        this.login = true;
+      }
+      else{
+        this.login = false;
+      }
+      this.apiToken = apiToken;
+    });
   }
 
   ionViewDidLoad() {
     this.getCategory();
   }
   getCategory() {
-    this.categoryService.getCategories().subscribe(res => {
+    this.categoryService.getCategories(this.login,this.apiToken).subscribe(res => {
       this.items = res.data;
       console.log(res.data);
-
     })
   }
 

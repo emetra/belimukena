@@ -112,6 +112,29 @@ export class CheckoutServiceProvider {
       });
   }
 
+  updatePaymentVa(data):Observable<any> {
+    let url = this.apiService.API_URL + '/checkout/update-payment-method';
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    let item = {
+      payment_bank: 'bca',
+      payment_method: 'va_transfer'
+    };
+
+    return this.http.patch(url, item, options)
+      .map(res => {
+          return res.json();
+        },
+        err => {
+          return err;
+        });
+  }
+
   updatePaymentManual(data):Observable<any> {
     let url = this.apiService.API_URL + '/checkout/update-payment-method';
     let headers = new Headers({
@@ -155,5 +178,20 @@ export class CheckoutServiceProvider {
         err => {
           return err;
         });
+  }
+
+  getTransactionDetail(data):Observable<any> {
+    let url = this.apiService.API_URL + '/transactions/'+data.invoice_number;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+    });
+
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(url,options)
+      .map(res => {
+        return res.json()
+      });
   }
 }

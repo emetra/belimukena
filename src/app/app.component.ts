@@ -43,7 +43,7 @@ export class MyApp {
       this.storage.get('api_key').then(apiToken => {
         if(apiToken){
           this.statuslogin = "loggedin";
-        };
+        }
       });
     });
   }

@@ -19,8 +19,6 @@ export class OrderdetailPage {
 
   ionViewDidLoad() {
     this.product = this.navParams.get('product');
-
-    console.log(this.product);
   }
 
   presentToast(message) {
