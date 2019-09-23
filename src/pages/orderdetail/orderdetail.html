@@ -18,6 +18,12 @@
         <ion-col *ngIf="(product?.status_id == 5)" style="color: darkred;">{{product?.status}}</ion-col>
       </ion-item-divider>
     </ion-row>
+    <ion-row padding-top>
+      <ion-item-divider *ngIf="product?.payment.payment_method == 'va_transfer'"  color="light">
+        <ion-col style="color: black">No Va : </ion-col>
+        <ion-col style="color: #FF8247;">{{product?.payment.payment_gateway_details.va_numbers[0].va_number}}</ion-col>
+      </ion-item-divider>
+    </ion-row>
     <ion-row>
       <ion-col>Tanggal Pembelian : </ion-col>
       <ion-col>Batal Otomatis : </ion-col>
@@ -91,6 +97,6 @@
   </ion-card>
 </ion-content>
 
-<ion-footer no-border padding>
-  <button  *ngIf="product?.status_id == 1" (click)="confirmationPayment()" ion-button round block>Konfirmasi Bayar</button>
+<ion-footer *ngIf="product?.status_id == 1 && product?.payment.payment_method == 'manual_transfer'"  no-border padding>
+  <button (click)="confirmationPayment()" ion-button round block>Konfirmasi Bayar</button>
 </ion-footer>
