@@ -16,9 +16,14 @@ export class AddressPage {
   items: any;
   recipient={};
   provinces: any;
+  sender={};
+  role_id: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public profileService: ProfileServiceProvider,
               public checkoutService: CheckoutServiceProvider,public storage: Storage,public toastCtrl: ToastController) {
+    storage.get('role_id').then(role => {
+      this.role_id = role;
+    });
   }
 
   ionViewDidLoad() {
@@ -54,8 +59,18 @@ export class AddressPage {
       };
       this.checkoutService.updateRecipient(data)
         .subscribe(result => {
-
-          this.navCtrl.push(DeliveryPage);
+            let data1 = {
+              apiToken: apiToken,
+              sender_name: (this.sender['name'] === undefined || this.sender['name'] === null || this.sender['name'] === '') ? 'Belimukena' : this.sender['name'],
+              sender_phone: (this.sender['phone'] === undefined || this.sender['phone'] === null || this.sender['phone'] === '') ? '1234' : this.sender['name']
+            };
+            this.checkoutService.updateSender(data1)
+              .subscribe(result => {
+                  this.navCtrl.push(DeliveryPage);
+                },
+                err => {
+                  this.presentToast("Tolong lengkapi data alamat");
+                });
         },
           err => {
             this.presentToast("Tolong lengkapi data alamat");

@@ -17,6 +17,14 @@
   <ion-card>
     <ion-card-content>
 
+      <ion-item-divider *ngIf="role_id > 1" color="light"><H4 style="font-size: 14px;">Nama Pengirim</H4></ion-item-divider>
+      <ion-item style="padding-bottom: 10px;">
+        <ion-input type="text" placeholder="Nama Lengkap" [(ngModel)]="sender.name"></ion-input>
+      </ion-item>
+      <ion-item-divider *ngIf="role_id > 1" color="light"><H4 style="font-size: 14px;">Nomor Telepon Pengirim</H4></ion-item-divider>
+      <ion-item style="padding-bottom: 10px;">
+        <ion-input type="tel" placeholder="Nomor Telepon" [(ngModel)]="sender.phone"></ion-input>
+      </ion-item>
 
   <ion-item-divider color="light"><H4 style="font-size: 14px;">Nama Lengkap</H4></ion-item-divider>
   <ion-item style="padding-bottom: 10px;">

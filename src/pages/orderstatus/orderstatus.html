@@ -42,7 +42,7 @@
                 <p style="color: black"><b>{{item.shipment.shipment_to}}</b></p>
                 <p>Rp.{{item.total | number}},-</p>
                 <p>{{item.created_at}}</p>
-            </button>
+              </button>
             </div>
         </ion-list>
 
@@ -50,7 +50,7 @@
             <div *ngFor="let item of orderlist">
               <button ion-item detail-push="" *ngIf="(item.status_id == 2)" (click)="orderDetail(item)">
                 <h2 style="color: #faafc8"><b>{{item.invoice_number}}</b></h2>
-                <h3 style="color: lightskyblue"><b>{{item.status}}</b></h3>
+                <h3 style="color: light skyblue"><b>{{item.status}}</b></h3>
                 <p style="color: black"><b>{{item.shipment.shipment_to}}</b></p>
                 <p>Rp.{{item.total | number}},-</p>
                 <p>{{item.created_at}}</p>

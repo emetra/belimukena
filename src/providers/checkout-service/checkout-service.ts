@@ -87,6 +87,29 @@ export class CheckoutServiceProvider {
       });
   }
 
+  updateSender(data):Observable<any> {
+    let url = this.apiService.API_URL + '/checkout/update-sender';
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': 'Bearer ' + data.apiToken
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    let item = {
+      sender_name: data.sender_name,
+      sender_phone: data.sender_phone
+    };
+
+    return this.http.patch(url, item, options)
+      .map(res => {
+          return res.json();
+        },
+        err => {
+          return err;
+        });
+  }
+
   updateShipment(data):Observable<any> {
     let url = this.apiService.API_URL + '/checkout/update-shipment';
     let headers = new Headers({
