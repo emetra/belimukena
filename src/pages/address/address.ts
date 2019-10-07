@@ -62,7 +62,7 @@ export class AddressPage {
             let data1 = {
               apiToken: apiToken,
               sender_name: (this.sender['name'] === undefined || this.sender['name'] === null || this.sender['name'] === '') ? 'Belimukena' : this.sender['name'],
-              sender_phone: (this.sender['phone'] === undefined || this.sender['phone'] === null || this.sender['phone'] === '') ? '1234' : this.sender['name']
+              sender_phone: (this.sender['phone'] === undefined || this.sender['phone'] === null || this.sender['phone'] === '') ? '082118415999' : this.sender['name']
             };
             this.checkoutService.updateSender(data1)
               .subscribe(result => {
