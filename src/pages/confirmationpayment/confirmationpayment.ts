@@ -18,10 +18,13 @@ import {OrderstatusPage} from "../orderstatus/orderstatus";
 })
 export class ConfirmationpaymentPage {
   invoice_number: any;
+  bank_id: any;
   item = {};
   constructor(public navCtrl: NavController, public navParams: NavParams,public toastCtrl: ToastController
               ,public storage: Storage,public orderService: OrderServiceProvider) {
-    this.invoice_number = navParams.get('invoice_id');
+    this.item['invoice_number'] = navParams.get('invoice_id');
+    this.item['bank_id'] = navParams.get('bank_id');
+    this.item['payment_amount'] = navParams.get('payment_amount');
   }
 
   ionViewDidLoad() {
@@ -35,11 +38,13 @@ export class ConfirmationpaymentPage {
         apiToken: apiToken,
         item : this.item
       };
-
+      console.log(data);
       this.orderService.paymentConfirmation(data)
         .subscribe(result => {
           this.presentToast("Konfirmasi Sukses");
           this.navCtrl.push(OrderstatusPage);
+        }, err => {
+          this.presentToast("Tolong lengkapi data");
         });
     });
   }

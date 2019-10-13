@@ -30,19 +30,43 @@
       </ion-card-content>
     </button>
   </ion-card>
-  <ion-card (click)="va()">
+  <ion-card (click)="cc()">
+    <button disabled ion-item>
+      <ion-img item-start="" src="assets/icon/credit-card.png" style="width: 60px;height: 60px;background-color: white"></ion-img>
+      <ion-card-content>
+        Credit Card
+      </ion-card-content>
+    </button>
+  </ion-card>
+  <ion-card (click)="va('bca')">
     <button ion-item >
-      <ion-img item-start="" src="assets/icon/Bca-icon.png" style="width: 60px;height: 60px;background-color: white"></ion-img>
+      <ion-img item-start="" src="assets/icon/bca-icon.png" style="width: 60px;height: 60px;background-color: white"></ion-img>
       <ion-card-content>
         BCA Virtual Account
       </ion-card-content>
     </button>
   </ion-card>
-  <ion-card (click)="manual()">
-    <button disabled ion-item>
-      <ion-img item-start="" src="assets/icon/credit-card.png" style="width: 60px;height: 60px;background-color: white"></ion-img>
+  <ion-card text-center (click)="va('mandiri')">
+    <button ion-item >
+      <ion-img item-start="" src="assets/icon/mandiri-icon.png" style="width: 60px;height: 60px;background-color: white;text-align: center"></ion-img>
       <ion-card-content>
-        Credit Card
+        Mandiri Virtual Account
+      </ion-card-content>
+    </button>
+  </ion-card>
+  <ion-card text-center="" (click)="va('bni')">
+    <button ion-item >
+      <ion-img item-start="" src="assets/icon/bni-icon.png" style="width: 60px;height: 60px;background-color: white;text-align: center"></ion-img>
+      <ion-card-content>
+        BNI Virtual Account
+      </ion-card-content>
+    </button>
+  </ion-card>
+  <ion-card (click)="va('permata')">
+    <button ion-item >
+      <ion-img item-start="" src="assets/icon/permata-icon.png" style="width: 60px;height: 60px;background-color: white;text-align: center"></ion-img>
+      <ion-card-content>
+        Permata Virtual Account
       </ion-card-content>
     </button>
   </ion-card>

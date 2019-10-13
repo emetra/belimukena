@@ -43,6 +43,7 @@ import {RegisterPage} from "../pages/register/register";
 import {ResetpasswordPage} from "../pages/resetpassword/resetpassword";
 import {ConfirmationpaymentPage} from "../pages/confirmationpayment/confirmationpayment";
 import {Clipboard} from "@ionic-native/clipboard";
+import {CcpaymentPage} from "../pages/ccpayment/ccpayment";
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import {Clipboard} from "@ionic-native/clipboard";
     VapaymentPage,
     SuccessPage,
     ResetpasswordPage,
-    ConfirmationpaymentPage
+    ConfirmationpaymentPage,
+    CcpaymentPage
   ],
   imports: [
     SuperTabsModule,
@@ -114,7 +116,8 @@ import {Clipboard} from "@ionic-native/clipboard";
     VapaymentPage,
     SuccessPage,
     ResetpasswordPage,
-    ConfirmationpaymentPage
+    ConfirmationpaymentPage,
+    CcpaymentPage
   ],
   providers: [
     StatusBar,

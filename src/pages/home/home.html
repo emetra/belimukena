@@ -18,6 +18,11 @@
 
 
 <ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-slides pager>
     <ion-slide *ngFor="let slide of slider;" style="background-color: green">
       <!--<h2>Slide 1</h2>-->

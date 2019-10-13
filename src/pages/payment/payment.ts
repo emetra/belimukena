@@ -4,6 +4,7 @@ import {ManualpaymentPage} from "../manualpayment/manualpayment";
 import {VapaymentPage} from "../vapayment/vapayment";
 import {CartServiceProvider} from "../../providers/cart-service/cart-service";
 import { Storage } from '@ionic/storage';
+import {CcpaymentPage} from "../ccpayment/ccpayment";
 
 @Component({
   selector: 'page-payment',
@@ -38,7 +39,12 @@ export class PaymentPage {
   manual(){
     this.navCtrl.push(ManualpaymentPage)
   }
-  va(){
-    this.navCtrl.push(VapaymentPage)
+
+  cc(){
+    this.navCtrl.push(CcpaymentPage)
+  }
+
+  va(bank){
+    this.navCtrl.push(VapaymentPage,{bank:bank})
   }
 }

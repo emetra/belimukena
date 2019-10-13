@@ -80,11 +80,11 @@ export class ProductServiceProvider {
     //   .catch(this.handleError);
   }
 
-  private handleError (error: Response | any) {
-    let errMsg = `${error.status} - ${error.statusText || ''}`;
-   console.error(errMsg);
-    return Observable.throw(errMsg);
-  }
+  // private handleError (error: Response | any) {
+  //   let errMsg = `${error.status} - ${error.statusText || ''}`;
+  //  console.error(errMsg);
+  //   return Observable.throw(errMsg);
+  // }
 
   getproductsByCategories(login,data,page,apiToken):Observable<any> {
     let link = ' ';

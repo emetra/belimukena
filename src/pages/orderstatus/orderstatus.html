@@ -13,6 +13,10 @@
 
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
     <div>
         <ion-segment color="primary"[(ngModel)]="category">
             <ion-segment-button value="confirm">
@@ -30,12 +34,15 @@
               <ion-segment-button value="batal">
                 Batal
               </ion-segment-button>
+              <ion-segment-button value="stock">
+                Stock
+              </ion-segment-button>
         </ion-segment>
       </div>
 
       <div [ngSwitch]="category" swipeSegment [tabsList]="categories" [(currentTab)]="category" (tabChanged)="onTabChanged($event)" class="swipe-area">
         <ion-list *ngSwitchCase="'confirm'">
-            <div *ngFor="let item of orderlist">
+            <div *ngFor="let item of status1">
               <button ion-item detail-push="" *ngIf="(item.status_id == 1)" (click)="orderDetail(item)">
                 <h2 style="color: #faafc8"><b>{{item.invoice_number}}</b></h2>
                 <h3 style="color: #FF8247"><b>{{item.status}}</b></h3>
@@ -47,10 +54,10 @@
         </ion-list>
 
         <ion-list *ngSwitchCase="'menunggu'">
-            <div *ngFor="let item of orderlist">
+            <div *ngFor="let item of status2">
               <button ion-item detail-push="" *ngIf="(item.status_id == 2)" (click)="orderDetail(item)">
                 <h2 style="color: #faafc8"><b>{{item.invoice_number}}</b></h2>
-                <h3 style="color: light skyblue"><b>{{item.status}}</b></h3>
+                <h3 style="color: lightskyblue"><b>{{item.status}}</b></h3>
                 <p style="color: black"><b>{{item.shipment.shipment_to}}</b></p>
                 <p>Rp.{{item.total | number}},-</p>
                 <p>{{item.created_at}}</p>
@@ -59,7 +66,7 @@
         </ion-list>
 
         <ion-list *ngSwitchCase="'proses'">
-          <div *ngFor="let item of orderlist">
+          <div *ngFor="let item of status3">
             <button ion-item detail-push="" *ngIf="(item.status_id == 3)" (click)="orderDetail(item)">
               <h2 style="color: #faafc8"><b>{{item.invoice_number}}</b></h2>
               <h3 style="color: darkblue"><b>{{item.status}}</b></h3>
@@ -71,7 +78,7 @@
         </ion-list>
 
           <ion-list *ngSwitchCase="'dikirim'">
-          <div *ngFor="let item of orderlist">
+          <div *ngFor="let item of status4">
             <button ion-item detail-push="" *ngIf="(item.status_id == 4)" (click)="orderDetail(item)">
               <h2 style="color: #faafc8"><b>{{item.invoice_number}}</b></h2>
               <h3 style="color: teal"><b>{{item.status}}</b></h3>
@@ -83,8 +90,20 @@
         </ion-list>
 
         <ion-list *ngSwitchCase="'batal'">
-          <div *ngFor="let item of orderlist">
+          <div *ngFor="let item of status5">
             <button ion-item detail-push="" *ngIf="(item.status_id == 5)" (click)="orderDetail(item)">
+              <h2 style="color: #faafc8"><b>{{item.invoice_number}}</b></h2>
+              <h3 style="color: darkred"><b>{{item.status}}</b></h3>
+              <p style="color: black"><b>{{item.shipment.shipment_to}}</b></p>
+              <p>Nomor Resi : {{item.shipment.resi_number}}</p>
+              <p>{{item.created_at}}</p>
+            </button>
+          </div>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'stock'">
+          <div *ngFor="let item of status6">
+            <button ion-item detail-push="" *ngIf="(item.status_id == 6)" (click)="orderDetail(item)">
               <h2 style="color: #faafc8"><b>{{item.invoice_number}}</b></h2>
               <h3 style="color: darkred"><b>{{item.status}}</b></h3>
               <p style="color: black"><b>{{item.shipment.shipment_to}}</b></p>

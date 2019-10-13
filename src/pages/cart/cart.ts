@@ -38,6 +38,13 @@ export class CartPage {
     this.events.publish('cart:badge',{});
   }
 
+  doRefresh(refresher) {
+    setTimeout(() => {
+      this.ionViewWillEnter();
+      refresher.complete();
+    }, 2000);
+  }
+
   getCart(){
     this.storage.get('api_key').then(apiToken => {
       let data = {

@@ -2,11 +2,8 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {OrderServiceProvider} from "../../providers/order-service/order-service";
-import {OrderstatusPage} from "../orderstatus/orderstatus";
-import {OrderconfirmationPage} from "../orderconfirmation/orderconfirmation";
 import {CheckoutServiceProvider} from "../../providers/checkout-service/checkout-service";
 import {SuccessPage} from "../success/success";
-import {ConfirmationpaymentPage} from "../confirmationpayment/confirmationpayment";
 
 @Component({
   selector: 'page-vapayment',
@@ -16,9 +13,12 @@ export class VapaymentPage {
   invoice_number: any;
   checkout={};
   items: any;
+  bankVa: any;
 
   constructor(public navCtrl: NavController,public checkoutService: CheckoutServiceProvider, public navParams: NavParams,public toastCtrl: ToastController
     ,public storage: Storage,public orderService: OrderServiceProvider) {
+    this.bankVa = navParams.get('bank');
+    console.log(this.bankVa);
   }
 
   ionViewDidLoad() {
@@ -59,7 +59,7 @@ export class VapaymentPage {
       let data = {
         apiToken: apiToken
       };
-      this.checkoutService.updatePaymentVa(data)
+      this.checkoutService.updatePaymentVa(data,this.bankVa)
         .subscribe(result => {
             this.checkoutService.confirmOrder(data)
               .subscribe(result => {

@@ -38,6 +38,23 @@ export class HomePage {
     });
   }
 
+  doRefresh(refresher) {
+    setTimeout(() => {
+      this.storage.get('api_key').then(apiToken => {
+        if(apiToken != null) {
+          this.login = true;
+        }
+        else{
+          this.login = false;
+        }
+        this.apiToken = apiToken;
+        this.getProduct();
+      });
+      this.ionViewDidLoad();
+      refresher.complete();
+    }, 2000);
+  }
+
   ionViewDidLoad(){
     this.getSlider();
   }

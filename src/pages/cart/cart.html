@@ -8,6 +8,10 @@
 </ion-header>
 
 <ion-content style="background-color: rgb(248, 247, 247)">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-img *ngIf="!items || items.length == 0" src="assets/imgs/shopping-cart.svg"style="width: 100px;height: 100px;display: block;margin: 0 auto;background-color: #f8f7f7;color: #faafc8!important;"></ion-img>
   <ion-label *ngIf="!items || items.length == 0"  text-center="">Keranjang Anda Kosong</ion-label>
     <ion-card *ngFor="let item of items; let i = index;" >

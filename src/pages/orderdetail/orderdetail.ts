@@ -32,8 +32,11 @@ export class OrderdetailPage {
   }
 
   confirmationPayment() {
+    console.log(this.product.payment.payment_details.grand_total);
       this.navCtrl.push(ConfirmationpaymentPage,{
-        invoice_id:this.product.invoice_number
+        invoice_id:this.product.invoice_number,
+        bank_id:this.product.payment.bank_id,
+        payment_amount:this.product.payment.payment_details.grand_total
       });
   }
 
